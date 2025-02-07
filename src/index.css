@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "medium";
+        src: url(./fonts/MonaSans-Medium.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: "semi-bold";
+        src: url(./fonts/MonaSans-SemiBold.ttf) format(truetype);
+    }
+}
