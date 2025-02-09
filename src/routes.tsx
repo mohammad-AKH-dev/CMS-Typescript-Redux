@@ -1,12 +1,8 @@
-import HomeRoute from "./pages/HomeRoute"
-
+import Dashboard from "./pages/Dashboard"
 
 
 const routes = [
-    {path : '/' , element : <HomeRoute/> , children: [
-        {path : '/dashboard' , element : <HomeRoute/> },
-        {path : '/users' }
-    ]}
+    {path :'/' , element :<Dashboard/> }
 ]
 
 export default routes

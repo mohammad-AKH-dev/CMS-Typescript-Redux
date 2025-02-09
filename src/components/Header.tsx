@@ -11,25 +11,24 @@ import { changeTheme } from "@/Redux/themeSlice";
 import { useEffect } from "react";
 
 function Header() {
-  const themes = useAppSelector(store => store.themes)
-  const dispatch = useAppDispatch()
 
-  const changeThemeHandler = (newTheme: string) => {
-
-     dispatch(changeTheme(newTheme))
-  }
-
-  useEffect(() => {
-
-    document.body.style.backgroundColor = themes.default
-    document.body.className = `bg-[${themes.default}] w-full font-text text-[14px] overflow-x-hidden text-subtitle'`
- 
-  },[themes])
-
+    const themes = useAppSelector(store => store.themes)
+    const dispatch = useAppDispatch()
+  
+    const changeThemeHandler = (newTheme: string) => {
+  
+       dispatch(changeTheme(newTheme))
+    }
+  
+    useEffect(() => {
+  
+      document.body.style.backgroundColor = themes.default
+      document.body.className = `bg-[${themes.default}] w-full font-text text-[14px] overflow-x-hidden text-subtitle'`
+   
+    },[themes])
 
   return (
-    <header className="header w-full p-6">
-      <div className="flex justify-between items-center">
+    <header className="flex header justify-between items-center">
         <div className="header-title__wrapper">
           <h2 className="header-title text-[24px] text-title">
             Welcome back, John
@@ -71,9 +70,8 @@ function Header() {
             </DropdownMenu>
           </button>
         </div>
-      </div>
-    </header>
-  );
+      </header>
+  )
 }
 
-export default Header;
+export default Header
