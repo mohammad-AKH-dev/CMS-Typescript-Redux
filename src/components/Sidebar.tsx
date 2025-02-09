@@ -17,9 +17,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useAppSelector } from "@/Redux/hooks";
 
 function Sidebar(): JSX.Element {
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+  const theme = useAppSelector((store) => store.themes.default);
 
   return (
     <>
@@ -72,15 +74,23 @@ function Sidebar(): JSX.Element {
         </div>
         {/* search bar */}
         <div
+          style={{ backgroundColor: theme }}
           className={`search-bar__wrapper ${
             isOpenSidebar ? "block" : "hidden"
-          } mt-8 border border-default focus-within:border-primary 
-                 px-4 py-3 bg-input rounded-md flex items-center justify-center gap-x-2`}
+          } mt-8 border ${
+            theme === "#ff6666"
+              ? "border-rose-100"
+              : "border-default focus-within:border-primary "
+          }  
+            ${
+              theme === "#687478" &&
+              "border-cyan-200 focus-within:border-cyan-300"
+            } px-4 py-3  rounded-md flex items-center justify-center gap-x-2`}
         >
           <CiSearch className="text-icon cursor-pointer" />
           <input
             type="text"
-            className="w-[90%] bg-input text-title text-[12px] border-none outline-none"
+            className="w-[90%] bg-inherit text-title text-[12px] border-none outline-none"
             placeholder="Search bar..."
           />
         </div>
@@ -110,7 +120,11 @@ function Sidebar(): JSX.Element {
         <div className="admin-profile flex items-center justify-between mt-24 ">
           <div className="profile__content flex items-center gap-x-2">
             <img src="/images/profiles/admin-profile.png" alt="admin" />
-            <div className={`profile-title__wrapper ${isOpenSidebar ? 'text-[12px]' : "text-[0px]"}`}>
+            <div
+              className={`profile-title__wrapper ${
+                isOpenSidebar ? "text-[12px]" : "text-[0px]"
+              }`}
+            >
               <h4 className="profile-title font-title text-title">
                 John Carter
               </h4>
@@ -118,18 +132,30 @@ function Sidebar(): JSX.Element {
             </div>
           </div>
           <div className="dropdown-wrapper">
-            <DropdownMenu >
-              <DropdownMenuTrigger className={`${isOpenSidebar ? 'block' : 'hidden'}`}>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={`${isOpenSidebar ? "block" : "hidden"}`}
+              >
                 <IoIosArrowForward className="text-icon cursor-pointer" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-input text-title border-none">
-                <DropdownMenuLabel >My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">Team</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">Subscription</DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">Log out</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Billing
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Team
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Subscription
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  Log out
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
