@@ -70,4 +70,5 @@
      .sidebar-link.active {
         @apply text-selected
     }
+
 }

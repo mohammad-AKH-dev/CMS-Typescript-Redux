@@ -15,7 +15,7 @@ function DashboardBox(props: DashboardBoxProps) {
 
   return (
     <div style={{backgroundColor: theme === '#081028' ? '#0B1739' : theme}} 
-    className="Dashboard-box p-4  min-h-[100px]  rounded-lg border border-primary">
+    className={`Dashboard-box p-4  min-h-[100px]  rounded-lg border ${theme === '#687478' || theme === '#ff6666' ? '#99a7cc' : 'border-primary'}`}>
       <span className="Dashboard-box__subtitle text-subtitle flex items-center justify-between">
         <div className="gap-x-2 font-text flex items-center">
         {Icon}

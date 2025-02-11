@@ -84,7 +84,7 @@ function Sidebar(): JSX.Element {
           }  
             ${
               theme === "#687478" &&
-              "border-cyan-200 focus-within:border-cyan-300"
+              "border-[#99a7cc] focus-within:border-cyan-300"
             } px-4 py-3  rounded-md flex items-center justify-center gap-x-2`}
         >
           <CiSearch className="text-icon cursor-pointer" />

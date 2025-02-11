@@ -11,7 +11,7 @@ function App(): JSX.Element {
   <>
      <div className="flex h-[2000px]">
         <Sidebar />
-        <div className="content w-full p-6">
+        <div className="content w-full p-6 container">
           <Header />
           <div className="main-content">
             {
