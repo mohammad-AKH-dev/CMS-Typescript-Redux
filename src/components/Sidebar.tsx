@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { BsArrows } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { IoMdHome } from "react-icons/io";
@@ -19,15 +19,19 @@ import {
 } from "./ui/dropdown-menu";
 import { useAppSelector } from "@/Redux/hooks";
 
-function Sidebar(): JSX.Element {
-  const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+type sidebarTypeProps = {
+  isOpen: boolean,
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function Sidebar({isOpen,setIsOpen}: sidebarTypeProps ): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
 
   return (
     <>
       <div
         className={`side-bar sticky left-0 top-0 transition-all 
-        ${isOpenSidebar ? "min-w-[250px]" : "min-w-[75px]"}
+        ${isOpen ? "min-w-[250px]" : "min-w-[75px]"}
        h-screen p-6 shadow-sidebar `}
       >
         {/* sidebar logo */}
@@ -35,7 +39,7 @@ function Sidebar(): JSX.Element {
           <div className="logo flex items-center justify-start">
             <svg
               className="cursor-pointer"
-              onClick={() => setIsOpenSidebar(true)}
+              onClick={() => setIsOpen(true)}
               xmlns="http://www.w3.org/2000/svg"
               width="27"
               height="27"
@@ -55,7 +59,7 @@ function Sidebar(): JSX.Element {
             </svg>
             <h3
               className={`logo-title transition-all text-title font-title  pl-2 ${
-                isOpenSidebar ? "w-fit" : "text-[0px]"
+                isOpen ? "w-fit" : "text-[0px]"
               }`}
             >
               Dashdark X
@@ -63,12 +67,12 @@ function Sidebar(): JSX.Element {
           </div>
           <div
             className={`open-close__sidebar-btn  transition-all ${
-              isOpenSidebar ? "w-[16px]" : "text-[0px]"
+              isOpen ? "w-[16px]" : "text-[0px]"
             }`}
           >
             <BsArrows
               className="text-icon cursor-pointer"
-              onClick={() => setIsOpenSidebar(false)}
+              onClick={() => setIsOpen(false)}
             />
           </div>
         </div>
@@ -76,7 +80,7 @@ function Sidebar(): JSX.Element {
         <div
           style={{ backgroundColor: theme }}
           className={`search-bar__wrapper ${
-            isOpenSidebar ? "block" : "hidden"
+            isOpen ? "block" : "hidden"
           } mt-8 border ${
             theme === "#ff6666"
               ? "border-rose-100"
@@ -96,22 +100,22 @@ function Sidebar(): JSX.Element {
         </div>
         {/* links */}
         <ul className="sidebar-links__list mt-8 flex flex-col gap-y-8 text-[0px]">
-          <SidebarLink isOpen={isOpenSidebar} title="Dashboard" href="/">
+          <SidebarLink isOpen={isOpen} title="Dashboard" href="/">
             <IoMdHome className="text-[20px]" />
           </SidebarLink>
-          <SidebarLink isOpen={isOpenSidebar} title="Users" href="/users">
+          <SidebarLink isOpen={isOpen} title="Users" href="/users">
             <HiUsers className="text-[20px]" />
           </SidebarLink>
-          <SidebarLink isOpen={isOpenSidebar} title="Products" href="/products">
+          <SidebarLink isOpen={isOpen} title="Products" href="/products">
             <IoBag className="text-[20px]" />
           </SidebarLink>
-          <SidebarLink isOpen={isOpenSidebar} title="Messages" href="/messages">
+          <SidebarLink isOpen={isOpen} title="Messages" href="/messages">
             <AiFillMessage className="text-[20px]" />
           </SidebarLink>
-          <SidebarLink isOpen={isOpenSidebar} title="Tasks" href="/tasks">
+          <SidebarLink isOpen={isOpen} title="Tasks" href="/tasks">
             <FaTasks className="text-[20px]" />
           </SidebarLink>
-          <SidebarLink isOpen={isOpenSidebar} title="Settings" href="/settings">
+          <SidebarLink isOpen={isOpen} title="Settings" href="/settings">
             <IoMdSettings className="text-[20px]" />
           </SidebarLink>
         </ul>
@@ -122,7 +126,7 @@ function Sidebar(): JSX.Element {
             <img src="/images/profiles/admin-profile.png" alt="admin" />
             <div
               className={`profile-title__wrapper ${
-                isOpenSidebar ? "text-[12px]" : "text-[0px]"
+                isOpen ? "text-[12px]" : "text-[0px]"
               }`}
             >
               <h4 className="profile-title font-title text-title">
@@ -134,7 +138,7 @@ function Sidebar(): JSX.Element {
           <div className="dropdown-wrapper">
             <DropdownMenu>
               <DropdownMenuTrigger
-                className={`${isOpenSidebar ? "block" : "hidden"}`}
+                className={`${isOpen ? "block" : "hidden"}`}
               >
                 <IoIosArrowForward className="text-icon cursor-pointer" />
               </DropdownMenuTrigger>

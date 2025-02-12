@@ -1,4 +1,4 @@
-import DashboardBox from "@/components/Box/DashboardBox";
+import DashboardMiniBox from "@/components/Box/DashboardMiniBox";
 import { IoEyeSharp } from "react-icons/io5";
 import { Badge } from "@/components/ui/badge";
 import { RxArrowTopRight } from "react-icons/rx";
@@ -9,6 +9,8 @@ import { FaStar } from "react-icons/fa";
 import { LuWifiZero } from "react-icons/lu";
 import { FaChartLine } from "react-icons/fa";
 import { LuTimer } from "react-icons/lu";
+import { GiSmartphone } from "react-icons/gi";
+import { CgAppleWatch } from "react-icons/cg";
 
 import {
   Area,
@@ -20,6 +22,8 @@ import {
   Line,
   LineChart,
 } from "recharts";
+
+import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
 
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -49,6 +53,7 @@ import {
 } from "@/components/ui/chart";
 import { useAppSelector } from "@/Redux/hooks";
 import { useState } from "react";
+import DashboardBox from "@/components/Box/DashboardBox";
 
 const chartConfig = {
   desktop: {
@@ -59,9 +64,13 @@ const chartConfig = {
     label: "Expenses",
     color: "#00c2ff",
   },
+  tablet: {
+    label: "Sell",
+    color: "#0038FF",
+  },
 } satisfies ChartConfig;
 
-function Dashboard() {
+function Dashboard(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
   const [date, setDate] = useState<Date>();
 
@@ -89,11 +98,15 @@ function Dashboard() {
     { month: "June", desktop: 214, mobile: 140 },
   ];
 
+  const chartRadialData = [
+    { month: "january", desktop: 1260, mobile: 570, tablet: 320 },
+  ];
+
   return (
     <div className="Dashboard">
-      {/* Dashboard boxes section */}
-      <div className="Dashboard-boxes grid grid-cols-4 gap-x-4 mt-8">
-        <DashboardBox
+      {/* Dashboard mini boxes section */}
+      <div className="Dashboard-mini-boxes grid grid-cols-4 gap-x-4 mt-8">
+        <DashboardMiniBox
           count={`${50.8}K`}
           subtitle="Pageviews"
           Icon=<IoEyeSharp />
@@ -102,8 +115,8 @@ function Dashboard() {
             28.4%
             <RxArrowTopRight className="ml-1" />
           </Badge>
-        </DashboardBox>
-        <DashboardBox
+        </DashboardMiniBox>
+        <DashboardMiniBox
           count={`${23.6}K`}
           subtitle="Monthly users"
           Icon=<FaUser />
@@ -112,8 +125,8 @@ function Dashboard() {
             12.6%
             <RxArrowBottomRight className="ml-1" />
           </Badge>
-        </DashboardBox>
-        <DashboardBox
+        </DashboardMiniBox>
+        <DashboardMiniBox
           count={756}
           subtitle="New sign ups"
           Icon=<IoMdAddCircle />
@@ -122,8 +135,8 @@ function Dashboard() {
             3.1%
             <RxArrowTopRight className="ml-1" />
           </Badge>
-        </DashboardBox>
-        <DashboardBox
+        </DashboardMiniBox>
+        <DashboardMiniBox
           count={`${2.3}k`}
           subtitle="Subscriptions"
           Icon=<FaStar />
@@ -132,7 +145,7 @@ function Dashboard() {
             11.3%
             <RxArrowTopRight className="ml-1" />
           </Badge>
-        </DashboardBox>
+        </DashboardMiniBox>
       </div>
       {/* charts Section */}
       <div
@@ -381,6 +394,192 @@ function Dashboard() {
             </CardFooter>
           </Card>
         </div>
+      </div>
+      {/* Dashboard boxes */}
+      <div className="Dashboard-boxes mt-12 grid grid-cols-3 gap-x-4">
+        <DashboardBox title="Products">
+          <div className="Dashboard-box__subtitle-wrapper flex items-center justify-between">
+            <span className="text-subtitle text-[12px]">Products</span>
+            <span className="text-subtitle text-[12px]">Price</span>
+          </div>
+          <ul className="Dashboard-box__list mt-6 flex flex-col gap-y-12">
+            <li className="Dashboard-box__item flex justify-between items-center">
+              <div className="pt-4 flex items-center gap-x-2">
+                <div
+                  style={{ backgroundColor: theme }}
+                  className="icon-wrapper bg-primary text-[#7e89ac] flex items-center justify-center rounded-lg w-[40px] h-[40px]"
+                >
+                  <GiSmartphone className="text-[44px]" />
+                </div>
+                <div className="product-title text-[14px] text-title">
+                  <h4>iPhone 14 Pro Max</h4>
+                  <span className="product-count text-subtitle">
+                    524 in stock
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span className="price text-title text-[13px]">$ 1,099.00</span>
+              </div>
+            </li>
+            <li className="Dashboard-box__item flex justify-between items-center">
+              <div className="pt-4 flex items-center gap-x-2">
+                <div
+                  style={{ backgroundColor: theme }}
+                  className="icon-wrapper  text-[#7e89ac] flex items-center justify-center rounded-lg w-[40px] h-[40px]"
+                >
+                  <CgAppleWatch className="text-[44px]" />
+                </div>
+                <div className="product-title text-[14px] text-title">
+                  <h4>Apple Watch S8</h4>
+                  <span className="product-count text-subtitle">
+                    320 in stock
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span className="price text-title text-[13px]">$ 799.00</span>
+              </div>
+            </li>
+          </ul>
+        </DashboardBox>
+        <DashboardBox title="Team progress">
+          <ul className="team-members__list flex flex-col gap-y-12">
+            <li className="member-list__item flex items-center justify-between">
+              <div className="member-profile__wrapper flex items-center gap-x-2">
+                <img src="images/profiles/woman.png" alt="woman" />
+                <div className="member-profile-infos text-[12px]">
+                  <h4 className="member-profile__title text-title">
+                    John Carter
+                  </h4>
+                  <p className="member-gmail text-subtitle">
+                    contact@sophiemoore.com
+                  </p>
+                </div>
+              </div>
+              <div className="member-progress text-[#ffffff] font-text">
+                60%
+              </div>
+            </li>
+            <li className="member-list__item flex items-center justify-between">
+              <div className="member-profile__wrapper flex items-center gap-x-2">
+                <img src="images/profiles/woman.png" alt="woman" />
+                <div className="member-profile-infos text-[12px]">
+                  <h4 className="member-profile__title text-title">
+                    Sophie Moore
+                  </h4>
+                  <p className="member-gmail text-subtitle">
+                    contact@sophiemoore.com
+                  </p>
+                </div>
+              </div>
+              <div className="member-progress text-[#ffffff] font-text">
+                33%
+              </div>
+            </li>
+            <li className="member-list__item flex items-center justify-between">
+              <div className="member-profile__wrapper flex items-center gap-x-2">
+                <img src="images/profiles/man.png" alt="man" />
+                <div className="member-profile-infos text-[12px]">
+                  <h4 className="member-profile__title text-title">
+                    Matt Cannon
+                  </h4>
+                  <p className="member-gmail text-subtitle">
+                    info@mattcannon.com
+                  </p>
+                </div>
+              </div>
+              <div className="member-progress text-[#ffffff] font-text">
+                75%
+              </div>
+            </li>
+          </ul>
+        </DashboardBox>
+        <DashboardBox title="Website Visitors">
+          <Card className="flex flex-col border-none">
+            <CardContent style={{backgroundColor: `${theme === '#081028' ? '#0B1739' : theme}`}} 
+            className={`flex flex-1 items-center pb-0`}>
+              <ChartContainer
+                config={chartConfig}
+                className="mx-auto aspect-square w-full max-w-[250px]"
+              >
+                <RadialBarChart
+                  data={chartRadialData}
+                  endAngle={180}
+                  innerRadius={80}
+                  outerRadius={130}
+                >
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent hideLabel />}
+                  />
+                  <PolarRadiusAxis
+                    tick={false}
+                    tickLine={false}
+                    axisLine={false}
+                  >
+                    <Label
+                      content={({ viewBox }) => {
+                        if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                          return (
+                            <text
+                              x={viewBox.cx}
+                              y={viewBox.cy}
+                              textAnchor="middle"
+                            >
+                              <tspan
+                                x={viewBox.cx}
+                                y={(viewBox.cy || 0) - 16}
+                                style={{ color: "#ffffff" }}
+                                className="fill-[#fff] text-2xl font-bold"
+                              >
+                                {(
+                                  chartRadialData[0].desktop +
+                                  chartRadialData[0].mobile
+                                ).toLocaleString()}
+                              </tspan>
+                              <tspan
+                                x={viewBox.cx}
+                                y={(viewBox.cy || 0) + 4}
+                                className="fill-subtitle"
+                              >
+                                Visitors
+                              </tspan>
+                            </text>
+                          );
+                        }
+                      }}
+                    />
+                  </PolarRadiusAxis>
+                  <RadialBar
+                    dataKey="desktop"
+                    stackId="a"
+                    cornerRadius={5}
+                    fill="var(--color-desktop)"
+                    className="stroke-transparent stroke-2"
+                  />
+                  <RadialBar
+                    dataKey="mobile"
+                    fill="var(--color-mobile)"
+                    stackId="a"
+                    cornerRadius={5}
+                    className="stroke-transparent stroke-2"
+                  />
+                </RadialBarChart>
+              </ChartContainer>
+            </CardContent>
+            <CardFooter style={{backgroundColor: `${theme === '#081028' ? '#0B1739' : theme}`}} className="flex items-center gap-x-6 justify-center">
+              <div className="flex items-center gap-x-2 ">
+                <span className="w-[7px] h-[7px] block rounded-full bg-selected"></span>
+                <div className="text-icon text-[12px]">Revenue</div>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <span className="w-[7px] h-[7px] block rounded-full bg-[#00c2ff]"></span>
+                <div className="text-icon text-[12px]">Expenses</div>
+              </div>
+            </CardFooter>
+          </Card>
+        </DashboardBox>
       </div>
     </div>
   );
