@@ -17,21 +17,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useAppSelector } from "@/Redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import { setIsOpen } from "@/Redux/sidebarSlice";
+import { useEffect } from "react";
 
-type sidebarTypeProps = {
-  isOpen: boolean,
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
 
-function Sidebar({isOpen,setIsOpen}: sidebarTypeProps ): JSX.Element {
+
+function Sidebar(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
+  const isOpen = useAppSelector(store => store.sidebar.isOpen)
+  const dispatch = useAppDispatch()
+  
+  useEffect(() => {
+    console.log(isOpen)
+  },[isOpen])
 
   return (
     <>
       <div
         className={`side-bar sticky left-0 top-0 transition-all 
-        ${isOpen ? "min-w-[250px]" : "min-w-[75px]"}
+        ${isOpen ? "min-w-[250px]" : "min-w-[70px]"}
        h-screen p-6 shadow-sidebar `}
       >
         {/* sidebar logo */}
@@ -39,7 +44,7 @@ function Sidebar({isOpen,setIsOpen}: sidebarTypeProps ): JSX.Element {
           <div className="logo flex items-center justify-start">
             <svg
               className="cursor-pointer"
-              onClick={() => setIsOpen(true)}
+              onClick={() => dispatch(setIsOpen(true))}
               xmlns="http://www.w3.org/2000/svg"
               width="27"
               height="27"
@@ -72,7 +77,7 @@ function Sidebar({isOpen,setIsOpen}: sidebarTypeProps ): JSX.Element {
           >
             <BsArrows
               className="text-icon cursor-pointer"
-              onClick={() => setIsOpen(false)}
+              onClick={() => dispatch(setIsOpen(false))}
             />
           </div>
         </div>

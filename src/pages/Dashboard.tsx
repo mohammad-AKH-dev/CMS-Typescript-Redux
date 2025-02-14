@@ -54,6 +54,7 @@ import {
 import { useAppSelector } from "@/Redux/hooks";
 import { useState } from "react";
 import DashboardBox from "@/components/Box/DashboardBox";
+import DemoPage from "@/components/Tables/orderstable/page";
 
 const chartConfig = {
   desktop: {
@@ -69,6 +70,7 @@ const chartConfig = {
     color: "#0038FF",
   },
 } satisfies ChartConfig;
+
 
 function Dashboard(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
@@ -105,7 +107,7 @@ function Dashboard(): JSX.Element {
   return (
     <div className="Dashboard">
       {/* Dashboard mini boxes section */}
-      <div className="Dashboard-mini-boxes grid grid-cols-4 gap-x-4 mt-8">
+      <section className="Dashboard-mini-boxes grid grid-cols-1 gap-y-8 gap-x-4 mt-8">
         <DashboardMiniBox
           count={`${50.8}K`}
           subtitle="Pageviews"
@@ -146,7 +148,7 @@ function Dashboard(): JSX.Element {
             <RxArrowTopRight className="ml-1" />
           </Badge>
         </DashboardMiniBox>
-      </div>
+      </section>
       {/* charts Section */}
       <div
         style={{
@@ -154,7 +156,7 @@ function Dashboard(): JSX.Element {
         }}
         className={`Dashboard-charts__wrapper flex justify-between mt-12 rounded-lg border ${
           theme === "#687478" || theme === "#ff6666"
-            ? "#99a7cc"
+            ? "border-[#99a7cc]"
             : "border-primary"
         }`}
       >
@@ -396,7 +398,7 @@ function Dashboard(): JSX.Element {
         </div>
       </div>
       {/* Dashboard boxes */}
-      <div className="Dashboard-boxes mt-12 grid grid-cols-3 gap-x-4">
+      <section className="Dashboard-boxes mt-12 grid grid-cols-3 gap-x-4">
         <DashboardBox title="Products">
           <div className="Dashboard-box__subtitle-wrapper flex items-center justify-between">
             <span className="text-subtitle text-[12px]">Products</span>
@@ -497,8 +499,12 @@ function Dashboard(): JSX.Element {
         </DashboardBox>
         <DashboardBox title="Website Visitors">
           <Card className="flex flex-col border-none">
-            <CardContent style={{backgroundColor: `${theme === '#081028' ? '#0B1739' : theme}`}} 
-            className={`flex flex-1 items-center pb-0`}>
+            <CardContent
+              style={{
+                backgroundColor: `${theme === "#081028" ? "#0B1739" : theme}`,
+              }}
+              className={`flex flex-1 items-center pb-0`}
+            >
               <ChartContainer
                 config={chartConfig}
                 className="mx-auto aspect-square w-full max-w-[250px]"
@@ -568,7 +574,12 @@ function Dashboard(): JSX.Element {
                 </RadialBarChart>
               </ChartContainer>
             </CardContent>
-            <CardFooter style={{backgroundColor: `${theme === '#081028' ? '#0B1739' : theme}`}} className="flex items-center gap-x-6 justify-center">
+            <CardFooter
+              style={{
+                backgroundColor: `${theme === "#081028" ? "#0B1739" : theme}`,
+              }}
+              className="flex items-center gap-x-6 justify-center"
+            >
               <div className="flex items-center gap-x-2 ">
                 <span className="w-[7px] h-[7px] block rounded-full bg-selected"></span>
                 <div className="text-icon text-[12px]">Revenue</div>
@@ -580,7 +591,51 @@ function Dashboard(): JSX.Element {
             </CardFooter>
           </Card>
         </DashboardBox>
-      </div>
+      </section>
+      {/* Orders Status */}
+      <section style={{backgroundColor: `${theme === '#081028' ? '#0b1739' : theme}`}} 
+        className=
+        {`orders-status-section mt-8 border rounded-lg ${
+          theme === "#ff6666" || theme === "#687478"
+            ? "border-[#99a7cc]"
+            : "border-primary"
+        }`}>
+        <div
+        className={`orders-status__header p-4
+        flex items-center justify-between`}>
+          <h4 className="orders-status__title text-title font-title text-[20px]">Orders Status</h4>
+          <div className="orders-status__buttons flex items-center gap-x-4">
+            {/* calender  */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  style={{ backgroundColor: theme, color: "#aeb9e1" }}
+                  variant={"outline"}
+                  className={cn(
+                    "max-w-[280px] justify-start text-left font-normal text-subtitle",
+                    !date && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0 border border-primary">
+                <Calendar
+                  className="bg-box text-subtitle"
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+            <button type="button" className="px-2 py-3 bg-selected rounded-lg text-title text-[12px]">Create order</button>
+          </div>
+        </div>
+        {/* orders table */}
+        <DemoPage/>
+      </section>
     </div>
   );
 }

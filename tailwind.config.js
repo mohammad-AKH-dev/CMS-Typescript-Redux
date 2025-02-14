@@ -15,7 +15,8 @@ export default {
   			sm: '480px',
   			md: '768px',
   			lg: '976px',
-  			xl: '1440px'
+			xl: '1200px',
+  			"2xl": '1440px'
   		},
   		colors: {
   			primary: {
@@ -26,8 +27,7 @@ export default {
         title: '#FFFFFF',
   			subtitle: '#AEB9E1',
   			selected: '#CB3CFF',
-  			success: 'rgba(5, 193, 104, 0.2)',
-  			error: 'rgba(255, 90, 101, 0.2)',
+			textPending: '#FDB52A',
 			textSuccess: '#14CA74',
 			textError: '#FF5A65',
   			pending: '#FDB52A',
@@ -77,7 +77,10 @@ export default {
   			'primary': '#081028',
   			'box': '#0B1739',
   			link: '#0A1330',
-  			input: '#0B1739'
+  			input: '#0B1739',
+			pending: 'rgba(255, 176, 22, 0.2)',
+			success: 'rgba(5, 193, 104, 0.2)',
+  			error: 'rgba(255, 90, 101, 0.2)',
   		},
   		fontFamily: {
   			'title': 'medium',

@@ -15,7 +15,7 @@ function DashboardBox(props: DashboardBoxProps): JSX.Element {
       }
     ${
       theme === "#ff6666" || theme === "#687478"
-        ? "boder-[#99a7cc]"
+        ? "border-[#99a7cc]"
         : "border-primary"
     }`}
     >
