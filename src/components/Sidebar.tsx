@@ -37,11 +37,11 @@ function Sidebar(): JSX.Element {
       <div
         className={`side-bar sticky left-0 top-0 transition-all 
         ${isOpen ? "min-w-[250px]" : "min-w-[70px]"}
-       h-screen p-6 shadow-sidebar `}
+       h-svh p-6 shadow-sidebar `}
       >
         {/* sidebar logo */}
         <div className="side-bar__logo-wrapper flex items-center justify-between gap-x-8">
-          <div className="logo flex items-center justify-start">
+          <div className={`logo flex items-center justify-start ${!isOpen ? 'ml-[.5rem]' : 'ml-0'}`}>
             <svg
               className="cursor-pointer"
               onClick={() => dispatch(setIsOpen(true))}
@@ -104,7 +104,9 @@ function Sidebar(): JSX.Element {
           />
         </div>
         {/* links */}
-        <ul className="sidebar-links__list mt-8 flex flex-col gap-y-8 text-[0px]">
+        <ul 
+        className={`sidebar-links__list mt-8
+        ${!isOpen ? 'relative gap-y-[3.8rem] left-2 top-4' : 'static gap-y-8'} flex flex-col text-[0px]`}>
           <SidebarLink isOpen={isOpen} title="Dashboard" href="/">
             <IoMdHome className="text-[20px]" />
           </SidebarLink>
@@ -128,7 +130,8 @@ function Sidebar(): JSX.Element {
         {/* admin profile */}
         <div className="admin-profile flex items-center justify-between mt-24 ">
           <div className="profile__content flex items-center gap-x-2">
-            <img src="/images/profiles/admin-profile.png" alt="admin" />
+            <img src="/images/profiles/admin-profile.png" alt="admin" 
+            className={`${!isOpen ? 'absolute bottom-4' : 'static'}`} />
             <div
               className={`profile-title__wrapper ${
                 isOpen ? "text-[12px]" : "text-[0px]"

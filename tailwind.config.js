@@ -9,9 +9,11 @@ export default {
   theme: {
 	container: {
 		center: true,
+		padding: '1rem'
 	},
   	extend: {
   		screens: {
+			xsm: '400px',
   			sm: '480px',
   			md: '768px',
   			lg: '976px',

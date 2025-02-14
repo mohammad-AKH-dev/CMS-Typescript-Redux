@@ -8,7 +8,7 @@ type sidebarSliceTypes = {
 
 
 const initialState: sidebarSliceTypes = {
-    isOpen: true
+    isOpen: false
 }
 
 

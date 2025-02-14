@@ -75,6 +75,7 @@ const chartConfig = {
 function Dashboard(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
   const [date, setDate] = useState<Date>();
+  const isOpen = useAppSelector(store => store.sidebar.isOpen)
 
   const chartData = [
     { month: "January", desktop: 186, mobile: 80 },
@@ -105,9 +106,11 @@ function Dashboard(): JSX.Element {
   ];
 
   return (
-    <div className="Dashboard">
+    <div className={`Dashboard `}>
       {/* Dashboard mini boxes section */}
-      <section className="Dashboard-mini-boxes grid grid-cols-1 gap-y-8 gap-x-4 mt-8">
+      <section className={`Dashboard-mini-boxes grid
+        ${!isOpen ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 
+        'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '}  gap-y-8 gap-x-4 mt-8`}>
         <DashboardMiniBox
           count={`${50.8}K`}
           subtitle="Pageviews"
@@ -158,14 +161,15 @@ function Dashboard(): JSX.Element {
           theme === "#687478" || theme === "#ff6666"
             ? "border-[#99a7cc]"
             : "border-primary"
-        }`}
+        } ${!isOpen ? 'flex-wrap lg:flex-nowrap' : 'flex-col lg:flex-row'}`
+      }
       >
-        <Card className="max-w-[64%] bg-inherit border-none">
+        <Card className="w-full lg:max-w-[64%] bg-inherit border-none">
           <CardHeader className="flex">
             <CardTitle className="text-subtitle text-[14px]">
               Total revenue
             </CardTitle>
-            <CardDescription className="flex justify-between">
+            <CardDescription className="flex justify-between flex-wrap gap-y-4">
               <div className="chart-title text-title font-title text-[24px] flex items-center gap-x-2">
                 $240.8K
                 <Badge className="bg-success flex font-text items-center justify-center text-textSuccess p-[.2rem] rounded-sm text-[11px]">
@@ -173,7 +177,7 @@ function Dashboard(): JSX.Element {
                   <RxArrowTopRight className="ml-1" />
                 </Badge>
               </div>
-              <div className="chart-inforamtion flex items-center gap-x-5">
+              <div className="chart-inforamtion flex flex-wrap items-center gap-x-5">
                 <div className="flex items-center gap-x-2">
                   <span className="w-[7px] h-[7px] block rounded-full bg-selected"></span>
                   <div className="text-icon text-[12px]">Revenue</div>
@@ -189,7 +193,7 @@ function Dashboard(): JSX.Element {
                       style={{ backgroundColor: theme, color: "#fff" }}
                       variant={"outline"}
                       className={cn(
-                        "max-w-[280px] justify-start text-left font-normal text-title",
+                        "max-w-[280px] justify-start text-left mt-4 sm:mt-0 font-normal text-title",
                         !date && "text-muted-foreground"
                       )}
                     >
@@ -283,7 +287,7 @@ function Dashboard(): JSX.Element {
           </CardContent>
         </Card>
         {/* Bar chart */}
-        <div className="Bar-chart-line-chart__wrapper flex flex-col gap-y-6">
+        <div className="Bar-chart-line-chart__wrapper w-full flex flex-col md:flex-row lg:flex-col gap-y-6">
           <Card className="bg-inherit border-none">
             <CardHeader>
               <CardTitle className="text-subtitle font-text text-[12px] flex items-center gap-x-1">
@@ -398,14 +402,14 @@ function Dashboard(): JSX.Element {
         </div>
       </div>
       {/* Dashboard boxes */}
-      <section className="Dashboard-boxes mt-12 grid grid-cols-3 gap-x-4">
+      <section className="Dashboard-boxes gap-y-8 mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4">
         <DashboardBox title="Products">
           <div className="Dashboard-box__subtitle-wrapper flex items-center justify-between">
             <span className="text-subtitle text-[12px]">Products</span>
             <span className="text-subtitle text-[12px]">Price</span>
           </div>
-          <ul className="Dashboard-box__list mt-6 flex flex-col gap-y-12">
-            <li className="Dashboard-box__item flex justify-between items-center">
+          <ul className="Dashboard-box__list mt-6 flex flex-col gap-y-3 sm:gap-y-12">
+            <li className="Dashboard-box__item flex flex-wrap sm:flex-nowrap gap-y-4 justify-between items-center">
               <div className="pt-4 flex items-center gap-x-2">
                 <div
                   style={{ backgroundColor: theme }}
@@ -424,7 +428,7 @@ function Dashboard(): JSX.Element {
                 <span className="price text-title text-[13px]">$ 1,099.00</span>
               </div>
             </li>
-            <li className="Dashboard-box__item flex justify-between items-center">
+            <li className="Dashboard-box__item flex flex-wrap sm:flex-nowrap gap-y-4 justify-between items-center">
               <div className="pt-4 flex items-center gap-x-2">
                 <div
                   style={{ backgroundColor: theme }}
@@ -446,8 +450,8 @@ function Dashboard(): JSX.Element {
           </ul>
         </DashboardBox>
         <DashboardBox title="Team progress">
-          <ul className="team-members__list flex flex-col gap-y-12">
-            <li className="member-list__item flex items-center justify-between">
+          <ul className="team-members__list flex flex-col gap-y-8 sm:gap-y-12">
+            <li className="member-list__item flex flex-col sm:flex-row gap-y-3 sm:gap-y-0 items-center justify-between">
               <div className="member-profile__wrapper flex items-center gap-x-2">
                 <img src="images/profiles/woman.png" alt="woman" />
                 <div className="member-profile-infos text-[12px]">
@@ -459,11 +463,11 @@ function Dashboard(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <div className="member-progress text-[#ffffff] font-text">
+              <div className="member-progress text-[#ffffff] pr-24 sm:pr-0 font-text">
                 60%
               </div>
             </li>
-            <li className="member-list__item flex items-center justify-between">
+            <li className="member-list__item flex flex-col sm:flex-row  gap-y-3 sm:gap-y-0 items-center justify-between">
               <div className="member-profile__wrapper flex items-center gap-x-2">
                 <img src="images/profiles/woman.png" alt="woman" />
                 <div className="member-profile-infos text-[12px]">
@@ -475,11 +479,11 @@ function Dashboard(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <div className="member-progress text-[#ffffff] font-text">
+              <div className="member-progress text-[#ffffff] pr-24 sm:pr-0 font-text">
                 33%
               </div>
             </li>
-            <li className="member-list__item flex items-center justify-between">
+            <li className="member-list__item flex flex-col sm:flex-row  gap-y-3 sm:gap-y-0 items-center justify-between">
               <div className="member-profile__wrapper flex items-center gap-x-2">
                 <img src="images/profiles/man.png" alt="man" />
                 <div className="member-profile-infos text-[12px]">
@@ -491,7 +495,7 @@ function Dashboard(): JSX.Element {
                   </p>
                 </div>
               </div>
-              <div className="member-progress text-[#ffffff] font-text">
+              <div className="member-progress text-[#ffffff] pr-24 sm:pr-0 font-text">
                 75%
               </div>
             </li>
@@ -601,10 +605,10 @@ function Dashboard(): JSX.Element {
             : "border-primary"
         }`}>
         <div
-        className={`orders-status__header p-4
+        className={`orders-status__header flex-wrap gap-y-6 p-4
         flex items-center justify-between`}>
           <h4 className="orders-status__title text-title font-title text-[20px]">Orders Status</h4>
-          <div className="orders-status__buttons flex items-center gap-x-4">
+          <div className="orders-status__buttons flex items-center flex-wrap sm:flex-nowrap gap-y-6 sm:gap-y-0 gap-x-4">
             {/* calender  */}
             <Popover>
               <PopoverTrigger asChild>
