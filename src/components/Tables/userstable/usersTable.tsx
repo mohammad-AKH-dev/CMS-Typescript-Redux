@@ -45,6 +45,58 @@ async function getData(): Promise<Payment[]> {
       status: "online",
       email: "m@example.com",
     },
+    {
+      id: "728ed52f",
+
+      client: 'John Carter',
+      phone: '(414) 907 - 1274',
+      country: 'United States',
+      company: {
+        name: 'Google',
+        icon: '/images/companies/Google.png'
+      },
+      status: "online",
+      email: "m@example.com",
+    },
+    {
+      id: "728ed52f",
+
+      client: 'John Carter',
+      phone: '(414) 907 - 1274',
+      country: 'United States',
+      company: {
+        name: 'Google',
+        icon: '/images/companies/Google.png'
+      },
+      status: "online",
+      email: "m@example.com",
+    },
+    {
+      id: "728ed52f",
+
+      client: 'John Carter',
+      phone: '(414) 907 - 1274',
+      country: 'United States',
+      company: {
+        name: 'Google',
+        icon: '/images/companies/Google.png'
+      },
+      status: "online",
+      email: "m@example.com",
+    },
+    {
+      id: "728ed52f",
+
+      client: 'John Carter',
+      phone: '(414) 907 - 1274',
+      country: 'United States',
+      company: {
+        name: 'Google',
+        icon: '/images/companies/Google.png'
+      },
+      status: "online",
+      email: "m@example.com",
+    },
     // سایر داده‌ها
   ];
 }

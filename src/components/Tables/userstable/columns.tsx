@@ -1,6 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -21,26 +22,23 @@ import { ImCheckboxChecked } from "react-icons/im";
 import { LuWifiZero } from "react-icons/lu";
 import { Badge } from "@/components/ui/badge";
 
-
-
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
   id: string;
   client: string;
-  phone: string
-  status: "offline" | "online"
+  phone: string;
+  status: "offline" | "online";
   email: string;
   country: string;
   company: {
-    name: string,
-    icon: string
-  }
+    name: string;
+    icon: string;
+  };
 };
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    
     id: "select",
     header: ({ table }) => (
       <div className="flex items-center gap-x-3 ml-2 text-title">
@@ -63,7 +61,6 @@ export const columns: ColumnDef<Payment>[] = [
           onCheckedChange={(value) => row.toggleSelected(!!value)}
           aria-label="Select row"
         />
-       
       </div>
     ),
     enableSorting: false,
@@ -71,11 +68,25 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "client",
-    header: () => (
-      <div className="flex items-center gap-x-2 justify-items-end text-title">
-        <FaUser /> Name
-      </div>
-    ),
+    // header: () => (
+
+    //   <div className="flex items-center gap-x-2 justify-items-end text-title">
+    //     <FaUser /> Name
+    //   </div>
+    // ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex items-center gap-x-2 justify-items-end text-title"
+          onClick={() => {
+            column.toggleSorting(column.getIsSorted() === "asc");
+          }}
+        >
+          <FaUser /> Name
+          <ArrowUpDown className="ml-2 h-4 w-4 cursor-pointer" />
+        </div>
+      );
+    },
     cell: ({ row }) => {
       const client: string = row.getValue("client");
       return (
@@ -92,9 +103,15 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "phone",
-    header: () => (
-      <div className="flex items-center gap-x-2 justify-items-end text-title">
+    header: ({ column }) => (
+      <div
+        className="flex items-center gap-x-2 justify-items-end text-title"
+        onClick={() => {
+          column.toggleSorting(column.getIsSorted() === "asc");
+        }}
+      >
         <FaPhoneAlt /> Phone
+        <ArrowUpDown className="ml-2 h-4 w-4 cursor-pointer" />
       </div>
     ),
     cell: ({ row }) => {
@@ -111,36 +128,45 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "country",
-    header: () => (
-      <div className="flex items-center gap-x-2 justify-items-end text-title">
+    header: ({ column }) => (
+      <div
+        className="flex items-center gap-x-2 justify-items-end text-title"
+        onClick={() => {
+          column.toggleSorting(column.getIsSorted() === "asc");
+        }}
+      >
         <FaLocationDot /> Location
+        <ArrowUpDown className="ml-2 h-4 w-4 cursor-pointer" />
       </div>
     ),
     cell: ({ row }) => {
       const country: string = row.getValue("country");
 
-      return (
-        <div>
-          {country}
-        </div>
-      );
+      return <div>{country}</div>;
     },
   },
   {
     accessorKey: "company",
-    header: () => (
-      <div className="flex items-center gap-x-2 justify-items-end text-title">
+    header: ({ column }) => (
+      <div
+        className="flex items-center gap-x-2 justify-items-end text-title"
+        onClick={() => {
+          column.toggleSorting(column.getIsSorted() === "asc");
+        }}
+      >
         <IoBag /> Company
+        <ArrowUpDown className="ml-2 h-4 w-4 cursor-pointer" />
       </div>
     ),
     cell: ({ row }) => {
-      const company: {name : string , icon : string} = row.getValue("company");
-       console.log(company)
+      const company: { name: string; icon: string } = row.getValue("company");
       return (
         <>
           <div className="flex items-center">
-            <img src={company.icon}/>
-            <span className="block text-subtitle text-[12px] pb-1">{company.name}</span>
+            <img src={company.icon} />
+            <span className="block text-subtitle text-[12px] pb-1">
+              {company.name}
+            </span>
           </div>
         </>
       );
@@ -148,10 +174,16 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "status",
-    header: () => (
-      <div className="flex items-center gap-x-2 justify-items-end text-title">
+    header: ({ column }) => (
+      <div
+        className="flex items-center gap-x-2 justify-items-end text-title"
+        onClick={() => {
+          column.toggleSorting(column.getIsSorted() === "asc");
+        }}
+      >
         <ImCheckboxChecked />
         Status
+        <ArrowUpDown className="ml-2 h-4 w-4 cursor-pointer" />
       </div>
     ),
     cell: ({ row }) => {
@@ -159,7 +191,7 @@ export const columns: ColumnDef<Payment>[] = [
 
       return (
         <>
-           <div className="flex text-icon items-center text-[12px]  gap-2 font-text leading-none">
+          <div className="flex text-icon items-center text-[12px]  gap-2 font-text leading-none">
             {status === "online" && (
               <Badge
                 className="bg-success  min-w-[100px] flex font-text items-center justify-center 
@@ -178,7 +210,6 @@ export const columns: ColumnDef<Payment>[] = [
                 <span className="pr-[.6rem] text-[12px]">offlane</span>
               </Badge>
             )}
-           
           </div>
         </>
       );
