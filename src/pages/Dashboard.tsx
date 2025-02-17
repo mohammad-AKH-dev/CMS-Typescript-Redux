@@ -161,7 +161,7 @@ function Dashboard(): JSX.Element {
           theme === "#687478" || theme === "#ff6666"
             ? "border-[#99a7cc]"
             : "border-primary"
-        } ${!isOpen ? 'flex-wrap lg:flex-nowrap' : 'flex-col lg:flex-row'}`
+        } ${!isOpen ? 'flex-wrap lg:flex-nowrap' : 'flex-col lg:flex-row '}`
       }
       >
         <Card className="w-full lg:max-w-[64%] bg-inherit border-none">
@@ -582,7 +582,7 @@ function Dashboard(): JSX.Element {
               style={{
                 backgroundColor: `${theme === "#081028" ? "#0B1739" : theme}`,
               }}
-              className="flex items-center gap-x-6 justify-center"
+              className="flex items-center gap-x-6 justify-center pt-[.8rem]"
             >
               <div className="flex items-center gap-x-2 ">
                 <span className="w-[7px] h-[7px] block rounded-full bg-selected"></span>
