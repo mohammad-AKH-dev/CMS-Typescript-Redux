@@ -4,7 +4,7 @@
 
 @layer base {
     @font-face {
-        font-family: "medium";
+        font-family: "Medium";
         src: url(./fonts/MonaSans-Medium.ttf) format('truetype');
     }
     @font-face {
