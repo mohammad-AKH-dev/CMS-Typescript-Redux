@@ -19,18 +19,16 @@ import {
 } from "./ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setIsOpen } from "@/Redux/sidebarSlice";
-import { useEffect } from "react";
 
 
 
-function Sidebar(): JSX.Element {
+
+function MainSidebar(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
   const isOpen = useAppSelector(store => store.sidebar.isOpen)
   const dispatch = useAppDispatch()
   
-  useEffect(() => {
-    console.log(isOpen)
-  },[isOpen])
+
 
   return (
     <>
@@ -122,9 +120,10 @@ function Sidebar(): JSX.Element {
           <SidebarLink isOpen={isOpen} title="Tasks" href="/tasks">
             <FaTasks className="text-[20px]" />
           </SidebarLink>
-          <SidebarLink isOpen={isOpen} title="Settings" href="/settings">
-            <IoMdSettings className="text-[20px]" />
-          </SidebarLink>
+            <div className="flex items-center gap-x-1">
+            <IoMdSettings className="text-[20px] text-icon cursor-pointer" />
+              <span className={`block ${isOpen ? 'text-[14px]' : 'text-[0px]'} text-icon`}>Settings</span>
+            </div>
         </ul>
 
         {/* admin profile */}
@@ -177,4 +176,4 @@ function Sidebar(): JSX.Element {
   );
 }
 
-export default Sidebar;
+export default MainSidebar;
