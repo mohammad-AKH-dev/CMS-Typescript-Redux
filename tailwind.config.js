@@ -89,7 +89,9 @@ export default {
   			'text': 'semi-bold'
   		},
   		boxShadow: {
-  			'sidebar': '0px 4px 14px rgba(0, 0, 0, 0.25)'
+  			'sidebar': '0px 4px 14px rgba(0, 0, 0, 0.25)',
+			'form': 'rgba(30, 60, 109, 0.8784313725) 0px 30px 30px -20px',
+			'Input': 'rgba(22,42,76,0.88) 0px 10px 10px -5px;'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
