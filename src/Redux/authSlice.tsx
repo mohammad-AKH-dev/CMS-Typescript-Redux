@@ -1,9 +1,10 @@
-import { createSlice, Slice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 
 type userType = {
   id: string;
   name: string;
+  position: string
   password: number | string;
   token: string;
   email: string;
@@ -11,31 +12,31 @@ type userType = {
 };
 
 type initialStateType = {
-    infos : userType,
-    isLogin: boolean,
-    setIsLogin : () => void
+    infos : userType | null,
+    isLogin: string | null
+    
 }
 
 const initialState:initialStateType = {
-    infos:  {
-        id: crypto.randomUUID(),
-        name: "mohammad akhlaghi",
-        password: "user1234",
-        token: "login",
-        email: "mohammadakhlaghi332@gmail.com",
-        role: "admin",
-        
-      },
-      isLogin: false,
-      setIsLogin: () => {initialState.isLogin = !initialState.isLogin}
+    infos:  null,
+    isLogin: localStorage.getItem('isLogin')
+      
 }
 
 const authSlice:Slice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+      setIsLogin: (state,action: PayloadAction<boolean>) => {
+        state.isLogin = action.payload
+      },
+      setInfos: (state,action: PayloadAction<userType | null>) => {
+        state.infos = action.payload
+      }
+    },
     extraReducers: () => {}
 })
 
 
 export const authSliceReducer = authSlice.reducer
+export const {setIsLogin , setInfos} = authSlice.actions

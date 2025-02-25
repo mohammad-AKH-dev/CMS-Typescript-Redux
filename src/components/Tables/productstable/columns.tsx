@@ -86,7 +86,7 @@ export const columns: ColumnDef<Product>[] = [
     },
     cell: ({ row }) => {
       const product: {name : string , img : string} = row.getValue("product");
-      console.log(product)
+      
       return (
         <>
           <div className="flex items-center gap-x-4">

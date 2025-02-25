@@ -27,7 +27,7 @@ function Users() {
       >
         <Header />
         <div className="main-content">
-          <section className="users-section mt-12">
+          <section className="users-section mt-12 pr-16 sm:pr-0">
             {/* users box section */}
             <div className="users-box grid grid-cols-1 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 users-boxes__wrapper gap-x-8">
               <UsersBox

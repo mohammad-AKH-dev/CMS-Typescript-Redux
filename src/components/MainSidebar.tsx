@@ -19,6 +19,13 @@ import {
 } from "./ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setIsOpen } from "@/Redux/sidebarSlice";
+import { setInfos, setIsLogin } from "@/Redux/authSlice";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { useEffect } from "react";
+
+const MySwal = withReactContent(Swal)
 
 
 
@@ -26,7 +33,39 @@ import { setIsOpen } from "@/Redux/sidebarSlice";
 function MainSidebar(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
   const isOpen = useAppSelector(store => store.sidebar.isOpen)
+  const auth = useAppSelector(store => store.auth)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    console.log(auth)
+  })
+
+  const logout = () => {
+    dispatch(setIsLogin(false))
+    dispatch(setInfos(null))
+    localStorage.setItem('status','offline')
+    localStorage.setItem('isLogin','false')
+    navigate('/login')
+  }
+
+  const handler = () => {
+     MySwal.fire({
+       title: 'Warning !',
+       text: 'Are You Sure About Logout?',
+       icon: 'warning',
+       confirmButtonText: 'Yes',
+       cancelButtonText: 'No',
+       showCancelButton: true,
+       background: 'rgba(11,23,57,1)',
+       color: '#fff',
+       iconColor: 'orange'
+     }).then(result => {
+      if(result.isConfirmed) {
+        logout()
+      }
+     })
+  }
   
 
 
@@ -50,8 +89,8 @@ function MainSidebar(): JSX.Element {
               fill="none"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M9.55363 0.275879C9.09481 0.275879 8.72287 0.647826 8.72287 1.10665V8.99895H8.72283C3.90521 8.99895 -0.000244141 12.9044 -0.000244141 17.722C-0.000244141 22.5396 3.90521 26.4451 8.72283 26.4451H16.6151C17.074 26.4451 17.4459 26.0731 17.4459 25.6143V17.722H17.4459C22.2636 17.722 26.169 13.8166 26.169 8.99895C26.169 4.18133 22.2636 0.275879 17.4459 0.275879H9.55363ZM17.4459 17.722V9.82971C17.4459 9.37089 17.074 8.99895 16.6151 8.99895H8.72287V16.8913C8.72287 17.3501 9.09481 17.722 9.55363 17.722H17.4459Z"
                 fill="#CB3CFF"
               />
@@ -137,9 +176,9 @@ function MainSidebar(): JSX.Element {
               }`}
             >
               <h4 className="profile-title font-title text-title">
-                John Carter
+                {auth?.infos.name}
               </h4>
-              <p className="profile-position text-icon">Frontend Developer</p>
+              <p className="profile-position text-icon">{auth.infos.position}</p>
             </div>
           </div>
           <div className="dropdown-wrapper">
@@ -164,7 +203,7 @@ function MainSidebar(): JSX.Element {
                 <DropdownMenuItem className="cursor-pointer">
                   Subscription
                 </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
+                <DropdownMenuItem className="cursor-pointer" onClick={handler}>
                   Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>

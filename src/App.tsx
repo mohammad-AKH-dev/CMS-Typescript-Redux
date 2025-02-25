@@ -1,18 +1,19 @@
 import { useRoutes } from "react-router-dom";
 import "./App.css";
 import routes from "./routes";
-import { useAppSelector } from "./Redux/hooks";
+import { ToastContainer } from 'react-toastify';
+
+
 
 function App(): JSX.Element {
-  const router = useRoutes(routes)
-
-  const isLogin = useAppSelector(store => store.auth)
+  const router = useRoutes(routes)  
 
   return (
   <>
     {
       router
     }
+   <ToastContainer />
   </>)
 }
 

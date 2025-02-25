@@ -120,7 +120,7 @@ function Dashboard(): JSX.Element {
       >
         <Header />
         <div className="main-content">
-          <div className={`Dashboard `}>
+          <div className={`Dashboard pr-16 sm:pr-0`}>
             {/* Dashboard mini boxes section */}
             <section
               className={`Dashboard-mini-boxes grid

@@ -10,11 +10,11 @@ import Users from "./pages/Users"
 const routes = [
     {path :'/' , element :<PrivatePage><Dashboard/></PrivatePage> },
     {path: '/login',element:<Login/>},
-    {path: '/dashboard',element:<Dashboard/>},
-    {path: '/users',element:<Users/>},
-    {path: '/products',element:<Products/>},
-    {path: '/messages',element:<Messages/>},
-    {path: '/tasks',element:<Tasks/>}
+    {path: '/dashboard',element:<PrivatePage><Dashboard/></PrivatePage>},
+    {path: '/users',element:<PrivatePage><Users/></PrivatePage>},
+    {path: '/products',element:<PrivatePage><Products/></PrivatePage>},
+    {path: '/messages',element:<PrivatePage><Messages/></PrivatePage>},
+    {path: '/tasks',element:<PrivatePage><Tasks/></PrivatePage>}
 ]
 
 export default routes

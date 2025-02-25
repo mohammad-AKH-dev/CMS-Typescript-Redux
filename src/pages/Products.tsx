@@ -23,7 +23,7 @@ function Products() {
       >
         <Header />
         <div className="main-content">
-          <section className="products-section mt-16">
+          <section className="products-section mt-16 pr-16 sm:pr-0">
             {/* products table */}
             <section
               style={{

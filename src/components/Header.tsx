@@ -38,7 +38,7 @@ function Header() {
             Measure your advertising ROI and report website traffic.
           </p>
         </div>
-        <div className="header-buttons__wrapper pr-12 sm:pr-0 flex-wrap gap-y-4 md:gap-y-0  flex items-center gap-x-3">
+        <div className="header-buttons__wrapper pr-12 sm:pr-0 flex-wrapo gap-y-4 md:gap-y-0  flex items-center gap-x-3">
           <button
             type="button"
             className="flex justify-center items-center gap-x-2 text-subtitle"
