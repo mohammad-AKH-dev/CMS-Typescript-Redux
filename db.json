@@ -1,29 +1,186 @@
 {
   "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
   ],
   "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
   ],
   "profile": {
     "name": "typicode"
   },
-  "users": {
-    "admins": [
-      {
-        "id": "1",
-        "name": "mohammad akhlaghi",
-        "position": "FrontEnd Developer",
-        "password": "admin1234",
-        "token": "login",
-        "email": "mohammadakhlaghi332@gmail.com",
-        "role": "admin"
-      }
-    ],
-    "users": [
-      
-    ]
-  }
+  "users": [
+    {
+      "id": "1",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "Germany",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "online",
+      "email": "m@example.com"
+    },
+    {
+      "id": "2",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "3",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "4",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "5",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "6",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "7",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "8",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "9",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "10",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "11",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    },
+    {
+      "id": "12",
+      "client": "John Carter",
+      "phone": "(414) 907 - 1274",
+      "country": "United States",
+      "company": {
+        "name": "Google",
+        "icon": "/images/companies/Google.png"
+      },
+      "status": "offline",
+      "email": "m@example.com"
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "name": "mohammad akhlaghi",
+      "position": "FrontEnd Developer",
+      "password": "admin1234",
+      "token": "login",
+      "email": "mohammadakhlaghi332@gmail.com",
+      "role": "admin"
+    }
+  ]
 }

@@ -1,4 +1,10 @@
-import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+
+export const fetchAdmin = createAsyncThunk('admins/get',async () => {
+   const req = await fetch('http://localhost:3000/admins')
+   const data = await req.json()
+   return data
+})
 
 
 type userType = {
@@ -18,7 +24,7 @@ type initialStateType = {
 }
 
 const initialState:initialStateType = {
-    infos:  null,
+    infos: null,
     isLogin: localStorage.getItem('isLogin')
       
 }
@@ -34,7 +40,11 @@ const authSlice:Slice = createSlice({
         state.infos = action.payload
       }
     },
-    extraReducers: () => {}
+    extraReducers: (builder) => {
+       builder.addCase(fetchAdmin.fulfilled,(state,action) => {
+          state.infos = action.payload
+       })
+    }
 })
 
 

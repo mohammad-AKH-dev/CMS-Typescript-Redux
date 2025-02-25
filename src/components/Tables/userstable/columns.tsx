@@ -2,19 +2,10 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { MoreHorizontal } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { FaUser } from "react-icons/fa";
+
+import { MdEdit } from "react-icons/md";
+import { FaTrash, FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoBag } from "react-icons/io5";
@@ -22,9 +13,11 @@ import { ImCheckboxChecked } from "react-icons/im";
 import { LuWifiZero } from "react-icons/lu";
 import { Badge } from "@/components/ui/badge";
 
+
+
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
+export type UserColumnType = {
   id: string;
   client: string;
   phone: string;
@@ -37,7 +30,8 @@ export type Payment = {
   };
 };
 
-export const columns: ColumnDef<Payment>[] = [
+
+export const columns: ColumnDef<UserColumnType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -215,6 +209,7 @@ export const columns: ColumnDef<Payment>[] = [
       );
     },
   },
+  
   {
     header: () => (
       <div className="flex items-center gap-x-2 justify-items-end text-title">
@@ -222,12 +217,11 @@ export const columns: ColumnDef<Payment>[] = [
       </div>
     ),
     id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original;
-
+    cell: () => {
       return (
-        <div className="actions">
-           
+        <div className="actions flex gap-x-3">
+           <MdEdit className="cursor-pointer"/>
+           <FaTrash className="cursor-pointer" />
         </div>
       );
     },

@@ -23,7 +23,6 @@ import { setInfos, setIsLogin } from "@/Redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { useEffect } from "react";
 
 const MySwal = withReactContent(Swal)
 
@@ -37,9 +36,6 @@ function MainSidebar(): JSX.Element {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   
-  useEffect(() => {
-    console.log(auth)
-  })
 
   const logout = () => {
     dispatch(setIsLogin(false))
@@ -176,9 +172,9 @@ function MainSidebar(): JSX.Element {
               }`}
             >
               <h4 className="profile-title font-title text-title">
-                {auth?.infos.name}
+                {auth?.infos?.name}
               </h4>
-              <p className="profile-position text-icon">{auth.infos.position}</p>
+              <p className="profile-position text-icon">{auth?.infos?.position}</p>
             </div>
           </div>
           <div className="dropdown-wrapper">
