@@ -9,4 +9,11 @@ export type userType = {
 }
 
 
+export type UserTableType = userType[]
 
+
+export type initialStateTypes = {
+    users : UserTableType | [],
+    error : boolean ,
+    loading : boolean
+}

@@ -3,13 +3,15 @@ import userSliceReducer from "./usersSlice";
 import themes from "./themeSlice";
 import sidebar from "./sidebarSlice";
 import { authSliceReducer } from "./authSlice";
+import { productSliceReducer } from "./productsSlice";
 
 const store = configureStore({
     reducer: {
         users: userSliceReducer,
         themes: themes,
         sidebar: sidebar,
-        auth: authSliceReducer
+        auth: authSliceReducer,
+        products: productSliceReducer
     }
 })
 

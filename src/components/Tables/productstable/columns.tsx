@@ -21,23 +21,11 @@ import { IoBag } from "react-icons/io5";
 import { ImCheckboxChecked } from "react-icons/im";
 import { LuWifiZero } from "react-icons/lu";
 import { Badge } from "@/components/ui/badge";
+import { Product } from "@/Redux/types/productSlice.types";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Product = {
-  id: string;
-  product: {
-    name: string,
-    img: string
-  }
-  category: string
-  price: number
-  status: "In Stock" | "Out of stock";
-  company: {
-    name: string;
-    icon: string;
-  };
-};
+
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -84,17 +72,17 @@ export const columns: ColumnDef<Product>[] = [
         </div>
       );
     },
+
     cell: ({ row }) => {
-      const product: {name : string , img : string} = row.getValue("product");
-      
+      const product = row.original.product
       return (
         <>
           <div className="flex items-center gap-x-4">
             <span className="block bg-selected rounded-full">
-              <img src={product.img} alt={product.name} />
+              <img src={product?.img} alt={product?.name} />
             </span>
             <span className="block text-title text-[12px] mt-1">
-             {product.name}
+             {product?.name}
             </span>
           </div>
         </>
@@ -159,11 +147,11 @@ export const columns: ColumnDef<Product>[] = [
       </div>
     ),
     cell: ({ row }) => {
-      const company: { name: string; icon: string } = row.getValue("company");
+      const company: { name: string; img: string } = row.getValue("company");
       return (
         <>
           <div className="flex items-center">
-            <img src={company.icon} />
+            <img src={company.img} />
             <span className="block text-subtitle text-[12px] pb-1">
               {company.name}
             </span>

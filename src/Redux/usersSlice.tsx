@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
-import { userType } from "./types/userslice.types";
+import { initialStateTypes } from "./types/userslice.types";
 import { UserColumnType } from "@/components/Tables/userstable/columns";
 
 export const fetchUsers = createAsyncThunk('users/GET',async () => {
@@ -27,12 +27,6 @@ export const editUser = createAsyncThunk('users/put',async (data : UserColumnTyp
     const res = req.json() 
     return res
 })
-
-type initialStateTypes = {
-    users : userType[] | [],
-    error : boolean ,
-    loading : boolean
-}
 
 const initialState:initialStateTypes = {
     error: false ,

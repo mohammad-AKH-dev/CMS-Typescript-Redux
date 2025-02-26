@@ -43,12 +43,12 @@
       "id": "2",
       "client": "John Carter",
       "phone": "(414) 907 - 1274",
-      "country": "United States",
+      "country": "French",
       "company": {
         "name": "Google",
         "icon": "/images/companies/Google.png"
       },
-      "status": "offline",
+      "status": "online",
       "email": "m@example.com"
     },
     {
@@ -181,6 +181,106 @@
       "token": "login",
       "email": "mohammadakhlaghi332@gmail.com",
       "role": "admin"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "product": {
+        "name": "Laptop",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "DIgitall ",
+      "price": 150,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "Out of stock"
+    },
+    {
+      "id": "2",
+      "product": {
+        "name": "Watch",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "Accessories",
+      "price": 100,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "In Stock"
+    },
+    {
+      "id": "3",
+      "product": {
+        "name": "Watch",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "Accessories",
+      "price": 100,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "In Stock"
+    },
+    {
+      "id": "4",
+      "product": {
+        "name": "Watch",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "Accessories",
+      "price": 100,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "In Stock"
+    },
+    {
+      "id": "5",
+      "product": {
+        "name": "Watch",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "Accessories",
+      "price": 100,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "In Stock"
+    },
+    {
+      "id": "6",
+      "product": {
+        "name": "Watch",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "Accessories",
+      "price": 100,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "In Stock"
+    },
+    {
+      "id": "7",
+      "product": {
+        "name": "Watch",
+        "img": "/images/products/Watch.png"
+      },
+      "category": "Accessories",
+      "price": 100,
+      "company": {
+        "name": "Google",
+        "img": "/images/companies/Google.png"
+      },
+      "status": "In Stock"
     }
   ]
 }

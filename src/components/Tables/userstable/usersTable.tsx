@@ -17,7 +17,7 @@ export default function UsersTable() {
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, []);
+  },[]);
 
   const removeHandler = (id: string) => {
     MySwal.fire({
