@@ -1,31 +1,4 @@
 {
-  "posts": [
-    {
-      "id": "1",
-      "title": "a title",
-      "views": 100
-    },
-    {
-      "id": "2",
-      "title": "another title",
-      "views": 200
-    }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
-    },
-    {
-      "id": "2",
-      "text": "another comment about post 1",
-      "postId": "1"
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "users": [
     {
       "id": "1",
@@ -282,5 +255,116 @@
       },
       "status": "In Stock"
     }
-  ]
+  ],
+"messages": [
+    {
+      "id": "1",
+      "img": "/images/profiles/man.png",
+      "author": "Alex Turner",
+      "socialID": "@alexturner",
+      "description": "Data analyst passionate about cutting-edge tech.",
+      "date": "7 min ago",
+      "message": {
+        "question": "",
+        "answer": "",
+        "questionArray": [
+          "Hey Mark! How’s it going? Wanted to discuss the new project.",
+          "You free for a call today?",
+          "Also, did you get the files I sent?"
+        ],
+        "answerArray": [
+          "Hey! Doing great, thanks. Yeah, let’s discuss the project.",
+          "I’m free this afternoon, what time works for you?",
+          "Yep, got the files, they look good!"
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "img": "/images/profiles/man.png",
+      "author": "Emma Carter",
+      "socialID": "@emmacarter",
+      "description": "Graphic designer who loves creative teamwork.",
+      "date": "4 min ago",
+      "message": {
+        "question": "Hi James! How are you? Got a question about the logo design, can you help me out today?",
+        "answer": "Hi Emma! Sure, I’m free after lunch. When should I call?",
+        "questionArray": [],
+        "answerArray": []
+      }
+    },
+    {
+      "id": "3",
+      "img": "/images/profiles/man.png",
+      "author": "Liam Brooks",
+      "socialID": "@liambrooks",
+      "description": "Backend developer and black coffee enthusiast.",
+      "date": "6 min ago",
+      "message": {
+        "question": "",
+        "answer": "",
+        "questionArray": [
+          "Hey Tom! Seen the new project?",
+          "How about we set up a quick meeting?",
+          "Oh, and any updates on the API bug?"
+        ],
+        "answerArray": [
+          "Hey! Yeah, I’ve seen it, looks interesting.",
+          "Good idea, I’m free this evening, what time suits you?",
+          "Fixed the API bug this morning, should be good now."
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "img": "/images/profiles/man.png",
+      "author": "Noah Evans",
+      "socialID": "@noahevans",
+      "description": "Network specialist who enjoys solving complex puzzles.",
+      "date": "3 min ago",
+      "message": {
+        "question": "Hi Sam! Busy? We’ve got a server issue, can you take a look?",
+        "answer": "Hi Noah! Nope, I’ve got time now. What’s the problem?",
+        "questionArray": [],
+        "answerArray": []
+      }
+    },
+    {
+      "id": "5",
+      "img": "/images/profiles/man.png",
+      "author": "Olivia Hayes",
+      "socialID": "@oliviahayes",
+      "description": "Project manager obsessed with perfect planning.",
+      "date": "8 min ago",
+      "message": {
+        "question": "Hi Chris! Got the project progress report ready? Can you send it today?",
+        "answer": "Hi Olivia! Yeah, I’ll have it ready in an hour and send it over.",
+        "questionArray": [],
+        "answerArray": []
+      }
+    },
+    {
+      "id": "6",
+      "img": "/images/profiles/man.png",
+      "author": "Ethan Parker",
+      "socialID": "@ethanparker",
+      "description": "Financial analyst and adventure travel junkie.",
+      "date": "10 min ago",
+      "message": {
+        "question": "",
+        "answer": "",
+        "questionArray": [
+          "Hey Luke! Reviewed this month’s financials?",
+          "Can we go over them today?",
+          "Also, what’s your take on the budget cuts?"
+        ],
+        "answerArray": [
+          "Hey Ethan! Yep, reviewed them yesterday.",
+          "Sure, I can do this afternoon, when should I call?",
+          "Budget cuts seem tight, but we can manage with some tweaks."
+        ]
+      }
+    }
+]
+  
 }

@@ -1,18 +1,31 @@
 import Header from "@/components/Header";
 import MainSidebar from "@/components/MainSidebar";
-import { useAppSelector } from "@/Redux/hooks";
-
-import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import { fetchMessages } from "@/Redux/messageSlice";
+import { messageType } from "@/Redux/types/messageSlice.types";
+import { FaCircleUser } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { FaPaperclip } from "react-icons/fa";
+import { BiSolidConversation } from "react-icons/bi";
+
 
 function Messages() {
+  const theme = useAppSelector((store) => store.themes.default);
+  const isOpen = useAppSelector((store) => store.sidebar.isOpen);
+  const messages = useAppSelector((store) => store.messages.messages);
+  const [selectedMessage, setSelectedMessage] = useState<messageType | null>(
+    null
+  );
+
+  const dispatch = useAppDispatch();
   useEffect(() => {
     document.title = "Messages";
   }, [window.location.pathname]);
 
-  const theme = useAppSelector((store) => store.themes.default);
-  const isOpen = useAppSelector(store => store.sidebar.isOpen)
+  useEffect(() => {
+    dispatch(fetchMessages());
+  }, []);
 
   return (
     <div className="flex ">
@@ -46,151 +59,67 @@ function Messages() {
                       className="messages-count text-subtitle font-text px-2 py-1 
                 bg-[rgba(87,93,255,.2)] rounded-sm border border-[rgba(87,93,255,.5)]"
                     >
-                      40
+                      {messages.length}
                     </div>
                   </div>
                   <ul className="messages-list mt-8 gap-y-6 h-[650px] overflow-y-auto [&::-webkit-scrollbar]:w-0">
-                    {/* ussuall message style */}
-                    <li className="message-list__item p-6 rounded-md">
-                      <div className="flex items-center justify-between">
-                        <div className="user-profile__wrapper flex items-center gap-x-2">
-                          <img src="/images/profiles/man.png" />
-                          <div className="user-infos">
-                            <h4 className="user-title font-title text-title text-[12px]">
-                              Patrick Meyer
-                            </h4>
-                            <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                              @patrickmeyer
-                            </span>
+                    {messages.map((message) =>
+                      message.id !== selectedMessage?.id ? (
+                        <li
+                          className="message-list__item p-6 rounded-md cursor-pointer"
+                          onClick={() => setSelectedMessage(message)}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="user-profile__wrapper flex items-center gap-x-2">
+                              <img src={message.img} />
+                              <div className="user-infos">
+                                <h4 className="user-title font-title text-title text-[12px]">
+                                  {message.author}
+                                </h4>
+                                <span className="user-subtitle font-text text-subtitle text-[12px] block">
+                                  {message.socialID}
+                                </span>
+                              </div>
+                            </div>
+                            <h5 className="message-time text-subtitle font-text text-[12px]">
+                              {message.date}
+                            </h5>
                           </div>
-                        </div>
-                        <h5 className="message-time text-subtitle font-text text-[12px]">
-                          5 min ago
-                        </h5>
-                      </div>
-                      <p className="message-description mt-6 text-subtitle text-[12px]">
-                        Lorem ipsum dolor sit amet consectetur non arcu non
-                        mauris quis diam lectus commodo.
-                      </p>
-                    </li>
-                    {/* selected message style */}
-                    <li
-                      className={`message-list__item 
-                 ${theme === "#687478" && "bg-[#574c559c]"}
-                 ${theme === "#ff6666" && "bg-[#3614e2c9]"}
-                 ${theme === "#00264c" && "bg-box"}
-                 ${theme === "#081028" && "bg-box"}
-                p-6 rounded-md`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="user-profile__wrapper flex items-center gap-x-2">
-                          <img src="/images/profiles/man.png" />
-                          <div className="user-infos">
-                            <h4 className="user-title font-title text-title text-[12px]">
-                              Patrick Meyer
-                            </h4>
-                            <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                              @patrickmeyer
-                            </span>
+                          <p className="message-description mt-6 text-subtitle text-[12px]">
+                            {message.description}
+                          </p>
+                        </li>
+                      ) : (
+                        <li
+                          className={`message-list__item cursor-pointer
+                                ${theme === "#687478" && "bg-[#574c559c]"}
+                                ${theme === "#ff6666" && "bg-[#3614e2c9]"}
+                                ${theme === "#00264c" && "bg-box"}
+                                ${theme === "#081028" && "bg-box"}
+                              p-6 rounded-md`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="user-profile__wrapper flex items-center gap-x-2">
+                              <img src="/images/profiles/man.png" />
+                              <div className="user-infos">
+                                <h4 className="user-title font-title text-title text-[12px]">
+                                  {message.author}
+                                </h4>
+                                <span className="user-subtitle font-text text-subtitle text-[12px] block">
+                                  {message.socialID}
+                                </span>
+                              </div>
+                            </div>
+                            <h5 className="message-time text-subtitle font-text text-[12px]">
+                              {message.date}
+                            </h5>
                           </div>
-                        </div>
-                        <h5 className="message-time text-subtitle font-text text-[12px]">
-                          5 min ago
-                        </h5>
-                      </div>
-                      <p className="message-description mt-6 text-subtitle text-[12px]">
-                        Lorem ipsum dolor sit amet consectetur non arcu non
-                        mauris quis diam lectus commodo.
-                      </p>
-                    </li>
-                    <li className="message-list__item p-6 rounded-md">
-                      <div className="flex items-center justify-between">
-                        <div className="user-profile__wrapper flex items-center gap-x-2">
-                          <img src="/images/profiles/man.png" />
-                          <div className="user-infos">
-                            <h4 className="user-title font-title text-title text-[12px]">
-                              Patrick Meyer
-                            </h4>
-                            <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                              @patrickmeyer
-                            </span>
-                          </div>
-                        </div>
-                        <h5 className="message-time text-subtitle font-text text-[12px]">
-                          5 min ago
-                        </h5>
-                      </div>
-                      <p className="message-description mt-6 text-subtitle text-[12px]">
-                        Lorem ipsum dolor sit amet consectetur non arcu non
-                        mauris quis diam lectus commodo.
-                      </p>
-                    </li>
-                    <li className="message-list__item p-6 rounded-md">
-                      <div className="flex items-center justify-between">
-                        <div className="user-profile__wrapper flex items-center gap-x-2">
-                          <img src="/images/profiles/man.png" />
-                          <div className="user-infos">
-                            <h4 className="user-title font-title text-title text-[12px]">
-                              Patrick Meyer
-                            </h4>
-                            <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                              @patrickmeyer
-                            </span>
-                          </div>
-                        </div>
-                        <h5 className="message-time text-subtitle font-text text-[12px]">
-                          5 min ago
-                        </h5>
-                      </div>
-                      <p className="message-description mt-6 text-subtitle text-[12px]">
-                        Lorem ipsum dolor sit amet consectetur non arcu non
-                        mauris quis diam lectus commodo.
-                      </p>
-                    </li>
-                    <li className="message-list__item p-6 rounded-md">
-                      <div className="flex items-center justify-between">
-                        <div className="user-profile__wrapper flex items-center gap-x-2">
-                          <img src="/images/profiles/man.png" />
-                          <div className="user-infos">
-                            <h4 className="user-title font-title text-title text-[12px]">
-                              Patrick Meyer
-                            </h4>
-                            <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                              @patrickmeyer
-                            </span>
-                          </div>
-                        </div>
-                        <h5 className="message-time text-subtitle font-text text-[12px]">
-                          5 min ago
-                        </h5>
-                      </div>
-                      <p className="message-description mt-6 text-subtitle text-[12px]">
-                        Lorem ipsum dolor sit amet consectetur non arcu non
-                        mauris quis diam lectus commodo.
-                      </p>
-                    </li>
-                    <li className="message-list__item p-6 rounded-md">
-                      <div className="flex items-center justify-between">
-                        <div className="user-profile__wrapper flex items-center gap-x-2">
-                          <img src="/images/profiles/man.png" />
-                          <div className="user-infos">
-                            <h4 className="user-title font-title text-title text-[12px]">
-                              Patrick Meyer
-                            </h4>
-                            <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                              @patrickmeyer
-                            </span>
-                          </div>
-                        </div>
-                        <h5 className="message-time text-subtitle font-text text-[12px]">
-                          5 min ago
-                        </h5>
-                      </div>
-                      <p className="message-description mt-6 text-subtitle text-[12px]">
-                        Lorem ipsum dolor sit amet consectetur non arcu non
-                        mauris quis diam lectus commodo.
-                      </p>
-                    </li>
+                          <p className="message-description mt-6 text-subtitle text-[12px]">
+                            {message.description}
+                          </p>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
               </div>
@@ -209,100 +138,97 @@ function Messages() {
                   <div className="chat-header ">
                     <div className="flex items-center justify-between p-4">
                       <div className="user-profile__wrapper flex items-center gap-x-2">
-                        <img src="/images/profiles/woman.png" />
+                        {selectedMessage ? (
+                          <img src={selectedMessage.img} />
+                        ) : (
+                          <FaCircleUser className="text-[28px] text-icon" />
+                        )}
                         <div className="user-infos">
                           <h4 className="user-title font-title text-title text-[16px]">
-                            Sophie Moore
+                            {selectedMessage?.author
+                              ? selectedMessage?.author
+                              : "user"}
                           </h4>
                           <span className="user-subtitle font-text text-subtitle text-[12px] block">
-                            @sophiemoore
+                            @
+                            {selectedMessage?.socialID
+                              ? selectedMessage?.author
+                              : "userId"}
                           </span>
                         </div>
                       </div>
                       <h5 className="message-time text-subtitle font-text text-[12px]">
-                        5 min ago
+                        {selectedMessage ? selectedMessage.date : ""}
                       </h5>
                     </div>
                   </div>
                   <div className="chat-body overflow-y-auto ">
-                    <div className="user-chat__section w-full">
+                    <div className={`user-chat__section w-full ${selectedMessage === null ? 'flex items-center justify-center mt-[10rem]' : ''}`}>
                       <div className="messages-wrapper flex items-center gap-x-3 ">
                         <div className="messages flex flex-col gap-y-6 mt-8">
                           <div
-                            className="p-4 flex flex-col  gap-x-4 gap-y-10 message h-[650px] pb-[6rem] xl:pb-4 overflow-y-auto
-                    [&::-webkit-scrollbar]:w-0
-                    "
+                            className={`p-4 flex flex-col ${!selectedMessage ? 'justify-center w-full items-center min-h-full' : 'pb-[6rem] xl:pb-4 h-[650px]'} gap-x-4 gap-y-10 message  overflow-y-auto
+                               [&::-webkit-scrollbar]:w-0`}
                           >
-                            {/* message */}
-                            <div className="flex flex-col gap-y-6 ">
-                              <div className="flex items-center gap-x-4 ">
-                                <img
-                                  src="/images/profiles/woman.png"
-                                  className="self-end"
-                                />
-                                <div className="message-paragraph rounded-lg bg-primary p-4 text-title lg:max-w-[250px]">
-                                  <p>
-                                    Hello John! Hope you’re doing well. I need
-                                    your help with some reports, are you
-                                    available for a call later today?
-                                  </p>
+                            {
+                              selectedMessage ? (
+                                <div className="flex flex-col gap-y-6 ">
+                              {/* question message */}
+                              {selectedMessage?.message.question && (
+                                <div className="flex items-center gap-x-4 ">
+                                  <img
+                                    src={selectedMessage.img}
+                                    className="self-end"
+                                  />
+                                  <div className="message-paragraph rounded-lg bg-primary p-4 text-title lg:max-w-[250px]">
+                                    <p>{selectedMessage.message.question}</p>
+                                  </div>
                                 </div>
-                              </div>
-
-                              <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
-                                <p>
-                                  Hello John! Hope you’re doing well. I need
-                                  your help with some reports, are you available
-                                  for a call later today?
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex flex-col gap-y-6 ">
-                              <div className="flex items-center gap-x-4 ">
-                                <img
-                                  src="/images/profiles/woman.png"
-                                  className="self-end"
-                                />
-                                <div className="message-paragraph rounded-lg bg-primary p-4 text-title lg:max-w-[250px]">
-                                  <p>
-                                    Hello John! Hope you’re doing well. I need
-                                    your help with some reports, are you
-                                    available for a call later today?
-                                  </p>
+                              )}
+                              {/* question messages */}
+                              {selectedMessage?.message.questionArray
+                                ?.length ? (
+                                <div className="flex items-center gap-x-4 ">
+                                  <img
+                                    src={selectedMessage.img}
+                                    className="self-end"
+                                  />
+                                  <div className="questions-wrapper flex flex-col gap-y-4">
+                                    {selectedMessage.message.questionArray.map(
+                                      (message) => (
+                                        <div className="message-paragraph rounded-lg bg-primary p-4 text-title lg:max-w-[250px]">
+                                          <p>{message}</p>
+                                        </div>
+                                      )
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
+                              ) : null}
 
-                              <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
-                                <p>
-                                  Hello John! Hope you’re doing well. I need
-                                  your help with some reports, are you available
-                                  for a call later today?
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex flex-col gap-y-6 ">
-                              <div className="flex items-center gap-x-4 ">
-                                <img
-                                  src="/images/profiles/woman.png"
-                                  className="self-end"
-                                />
-                                <div className="message-paragraph rounded-lg bg-primary p-4 text-title lg:max-w-[250px]">
-                                  <p>
-                                    Hello John! Hope you’re doing well. I need
-                                    your help with some reports, are you
-                                    available for a call later today?
-                                  </p>
+                              {/* answer message */}
+                              {selectedMessage?.message.answer && (
+                                <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
+                                  <p>{selectedMessage.message.answer}</p>
                                 </div>
-                              </div>
+                              )}
 
-                              <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
-                                <p>
-                                  Hello John! Hope you’re doing well. I need
-                                  your help with some reports, are you available
-                                  for a call later today?
-                                </p>
-                              </div>
+                              {/* answer messages */}
+                              {selectedMessage?.message.answerArray?.length
+                                ? selectedMessage?.message.answerArray.map(
+                                    (message) => (
+                                      <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
+                                        <p>{message}</p>
+                                      </div>
+                                    )
+                                  )
+                                : null}
                             </div>
+                              ) : <div className="flex items-center justify-center flex-col gap-y-4">
+                                <BiSolidConversation className="text-[120px] text-title"/>
+                                 <p className="font-text text-subtitle text-[24px]">start conversation with someone...</p>
+                              </div>
+                            }
+                            
                           </div>
                         </div>
                       </div>

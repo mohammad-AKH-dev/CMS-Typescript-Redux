@@ -4,6 +4,7 @@ import themes from "./themeSlice";
 import sidebar from "./sidebarSlice";
 import { authSliceReducer } from "./authSlice";
 import { productSliceReducer } from "./productsSlice";
+import { messageSliceReducer } from "./messageSlice";
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         themes: themes,
         sidebar: sidebar,
         auth: authSliceReducer,
-        products: productSliceReducer
+        products: productSliceReducer,
+        messages: messageSliceReducer
     }
 })
 
