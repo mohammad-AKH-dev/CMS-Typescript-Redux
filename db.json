@@ -256,7 +256,7 @@
       "status": "In Stock"
     }
   ],
-"messages": [
+  "messages": [
     {
       "id": "1",
       "img": "/images/profiles/man.png",
@@ -365,6 +365,91 @@
         ]
       }
     }
-]
-  
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "E-commerce platform optimization",
+      "description": "Enhance backend performance and improve user checkout flow for better scalability.",
+      "field": "Development",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "title": "Social media campaign launch",
+      "description": "Plan and execute a targeted ad campaign across Instagram and Twitter for product awareness.",
+      "field": "Marketing",
+      "status": "In Progress"
+    },
+    {
+      "id": "3",
+      "title": "Mobile app UI redesign",
+      "description": "Revamp the app interface to improve usability and align with brand aesthetics.",
+      "field": "Design",
+      "status": "Completed"
+    },
+    {
+      "id": "4",
+      "title": "API integration for payment gateway",
+      "description": "Develop and test seamless payment processing integration for the online store.",
+      "field": "Development",
+      "status": "In Progress"
+    },
+    {
+      "id": "5",
+      "title": "Email newsletter template creation",
+      "description": "Design a responsive and visually appealing template for monthly customer updates.",
+      "field": "Design",
+      "status": "Active"
+    },
+    {
+      "id": "6",
+      "title": "SEO strategy overhaul",
+      "description": "Analyze and update keyword targets to boost organic search rankings.",
+      "field": "Marketing",
+      "status": "Completed"
+    },
+    {
+      "id": "7",
+      "title": "Database migration to cloud",
+      "description": "Transfer existing data to a secure cloud solution with minimal downtime.",
+      "field": "Development",
+      "status": "Completed"
+    },
+    {
+      "id": "8",
+      "title": "Brand logo refresh",
+      "description": "Update the company logo to reflect modern trends while retaining core identity.",
+      "field": "Design",
+      "status": "In Progress"
+    },
+    {
+      "id": "9",
+      "title": "Content marketing plan Q2",
+      "description": "Develop a quarterly blog and video content schedule to engage target audience.",
+      "field": "Marketing",
+      "status": "Active"
+    },
+    {
+      "id": "ef53febe-aadb-42c6-9e6e-37c422d1dc5a",
+      "title": "Fix users page ui",
+      "description": "fix the margin and padding of the table",
+      "field": "Design",
+      "status": "Active"
+    },
+    {
+      "id": "aadcae90-a517-4441-93ef-5a39feec9059",
+      "title": "introdue company",
+      "description": "we shall introduce our company to our news guests",
+      "field": "Marketing",
+      "status": "In Progress"
+    },
+    {
+      "id": "266355df-b4f2-4792-bbb8-e90b7c55328f",
+      "title": "github",
+      "description": "register you github accounts",
+      "field": "Development",
+      "status": "Completed"
+    }
+  ]
 }

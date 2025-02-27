@@ -2,16 +2,18 @@ import { FiMoreVertical } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa";
 import TaskBox from "./Box/TaskBox";
 import { useAppSelector } from "@/Redux/hooks";
+import { taskType } from "@/Redux/types/tasksSlice.type";
 
 type taskRowPropsType = {
   title: string;
   count: number;
+  tasks: taskType[]
   handler: () => void;
 };
 
 function TaskRow(props: taskRowPropsType) {
   const theme = useAppSelector(store => store.themes.default)
-  const { title, count, handler } = props;
+  const { title, count, handler , tasks} = props;
   return (
     <div className="task-row">
       <div className="task-row__header flex items-center justify-between">
@@ -39,9 +41,11 @@ function TaskRow(props: taskRowPropsType) {
         <FaPlus className="text-[20px] text-icon" />
       </div>
       <div className="tasks flex flex-col gap-y-6">
-        <TaskBox />
-        <TaskBox />
-        <TaskBox />
+        {
+          tasks.map(task => (
+            <TaskBox key={task.id} {...task}/>
+          ))
+        }
       </div>
     </div>
   );
