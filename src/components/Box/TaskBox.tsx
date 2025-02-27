@@ -158,7 +158,7 @@ function TaskBox(props: TaskBoxPropsType) {
 
   return (
     <div
-      className={`task-wrapper mt-4 p-4 
+      className={`task-wrapper mt-4 p-4 max-h-[250px]
       ${theme === "#ff666" && "bg-[#3614e2c9] border-white"}
          ${theme === "#687478" && "bg-[#574c559c] border-white"} 
          ${theme === "#081028" && "bg-box  border-primary"}
@@ -182,7 +182,7 @@ function TaskBox(props: TaskBoxPropsType) {
         </div>
         {/* task description */}
         <h3 className="task-title text-title font-title mt-4">{props.title}</h3>
-        <p className="task-description text-subtitle font-text mt-2">
+        <p className="task-description text-subtitle font-text mt-2 overflow-hidden whitespace-nowrap text-ellipsis">
           {props.description}
         </p>
         {/* task status */}

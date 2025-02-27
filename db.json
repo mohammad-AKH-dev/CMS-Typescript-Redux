@@ -93,7 +93,7 @@
         "name": "Google",
         "icon": "/images/companies/Google.png"
       },
-      "status": "offline",
+      "status": "online",
       "email": "m@example.com"
     },
     {
