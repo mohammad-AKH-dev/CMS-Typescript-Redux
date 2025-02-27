@@ -22,6 +22,7 @@ type TaskBoxPropsType = taskType;
 
 function TaskBox(props: TaskBoxPropsType) {
   const theme = useAppSelector((store) => store.themes.default);
+  const isOpen = useAppSelector(store => store.sidebar.isOpen)
   const dispatch = useAppDispatch()
   const MySwal = withReactContent(Swal)
 
@@ -181,7 +182,9 @@ function TaskBox(props: TaskBoxPropsType) {
           </div>
         </div>
         {/* task description */}
-        <h3 className="task-title text-title font-title mt-4">{props.title}</h3>
+        <h3 className={`task-title text-title font-title
+           ${isOpen && 'md:whitespace-nowrap'}
+          mt-4 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal`}>{props.title}</h3>
         <p className="task-description text-subtitle font-text mt-2 overflow-hidden whitespace-nowrap text-ellipsis">
           {props.description}
         </p>

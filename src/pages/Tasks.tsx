@@ -271,7 +271,10 @@ function Tasks() {
         <Header />
         <div className="main-content">
           <section className="tasks-section mt-16">
-            <div className="tasks-wrapper grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
+            <div className={`tasks-wrapper ${
+              !isOpen ? 'grid gap-y-6 lg:gap-y-0  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6'
+              : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 mr-4 md:mr-0 gap-y-6 lg:gap-y-0'
+            }`}>
               <TaskRow
                 title="To Do"
                 count={activeTodos.length}

@@ -65,7 +65,7 @@ function Messages() {
                   <ul className="messages-list mt-8 gap-y-6 h-[650px] overflow-y-auto [&::-webkit-scrollbar]:w-0">
                     {messages.map((message) =>
                       message.id !== selectedMessage?.id ? (
-                        <li
+                        <li key={message.id}
                           className="message-list__item p-6 rounded-md cursor-pointer"
                           onClick={() => setSelectedMessage(message)}
                         >
@@ -90,7 +90,7 @@ function Messages() {
                           </p>
                         </li>
                       ) : (
-                        <li
+                        <li key={message.id}
                           className={`message-list__item cursor-pointer
                                 ${theme === "#687478" && "bg-[#574c559c]"}
                                 ${theme === "#ff6666" && "bg-[#3614e2c9]"}
@@ -163,7 +163,7 @@ function Messages() {
                     </div>
                   </div>
                   <div className="chat-body overflow-y-auto ">
-                    <div className={`user-chat__section w-full ${selectedMessage === null ? 'flex items-center justify-center mt-[10rem]' : ''}`}>
+                    <div className={`user-chat__section w-full ${selectedMessage === null ? 'flex items-center justify-center mt-[5rem] xl:mt-[10rem] mb-[10rem] xl:mb-0' : ''}`}>
                       <div className="messages-wrapper flex items-center gap-x-3 ">
                         <div className="messages flex flex-col gap-y-6 mt-8">
                           <div
@@ -188,7 +188,7 @@ function Messages() {
                               {/* question messages */}
                               {selectedMessage?.message.questionArray
                                 ?.length ? (
-                                <div className="flex items-center gap-x-4 ">
+                                <div className="flex items-center gap-x-4 mb-8">
                                   <img
                                     src={selectedMessage.img}
                                     className="self-end"
@@ -207,7 +207,7 @@ function Messages() {
 
                               {/* answer message */}
                               {selectedMessage?.message.answer && (
-                                <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
+                                <div className="message rounded-lg ml-[6rem] sm:ml-[8rem] md:ml-[20rem]  lg:ml-[33rem] lt:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
                                   <p>{selectedMessage.message.answer}</p>
                                 </div>
                               )}
@@ -216,7 +216,7 @@ function Messages() {
                               {selectedMessage?.message.answerArray?.length
                                 ? selectedMessage?.message.answerArray.map(
                                     (message) => (
-                                      <div className="message rounded-lg  sm:ml-[6rem] lg:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
+                                      <div className="message rounded-lg ml-[6rem] sm:ml-[8rem] md:ml-[20rem] lg:ml-[33rem] lt:ml-[40rem] xl:ml-[34rem] bg-[#9A91FB] p-4 text-title lg:max-w-[250px] ">
                                         <p>{message}</p>
                                       </div>
                                     )

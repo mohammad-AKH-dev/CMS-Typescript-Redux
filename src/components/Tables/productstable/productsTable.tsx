@@ -18,7 +18,6 @@ export default function ProductsTable() {
 
   useEffect(() => {
      dispatch(fetchProducts())
-     console.log(products)
   },[])
 
    const removeHandler = (id: string) => {

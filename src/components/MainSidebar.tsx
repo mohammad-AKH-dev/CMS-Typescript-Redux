@@ -19,11 +19,11 @@ import {
 } from "./ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setIsOpen } from "@/Redux/sidebarSlice";
-import { setInfos, setIsLogin } from "@/Redux/authSlice";
+import { setInfos, setIsLogin, userType } from "@/Redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import { useEffect, useState } from "react";
 const MySwal = withReactContent(Swal)
 
 
@@ -32,9 +32,18 @@ const MySwal = withReactContent(Swal)
 function MainSidebar(): JSX.Element {
   const theme = useAppSelector((store) => store.themes.default);
   const isOpen = useAppSelector(store => store.sidebar.isOpen)
-  const auth = useAppSelector(store => store.auth)
+  const [admin,setAdmin] = useState<userType | null>(null)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    fetch('http://localhost:3000/admins')
+     .then(res => res.json())
+     .then(data => {
+       setAdmin(data[0])
+     })
+  },[])
+
   
 
   const logout = () => {
@@ -172,9 +181,9 @@ function MainSidebar(): JSX.Element {
               }`}
             >
               <h4 className="profile-title font-title text-title">
-                {auth?.infos?.name}
+                {admin?.name}
               </h4>
-              <p className="profile-position text-icon">{auth?.infos?.position}</p>
+              <p className="profile-position text-icon">{admin?.position}</p>
             </div>
           </div>
           <div className="dropdown-wrapper">

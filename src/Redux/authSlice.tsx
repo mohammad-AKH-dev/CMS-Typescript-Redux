@@ -7,7 +7,7 @@ export const fetchAdmin = createAsyncThunk('admins/get',async () => {
 })
 
 
-type userType = {
+export type userType = {
   id: string;
   name: string;
   position: string
@@ -43,6 +43,7 @@ const authSlice:Slice = createSlice({
     extraReducers: (builder) => {
        builder.addCase(fetchAdmin.fulfilled,(state,action) => {
           state.infos = action.payload
+          console.log('infos',state.infos)
        })
     }
 })

@@ -3,7 +3,7 @@ import { BsApple } from "react-icons/bs";
 import { BsTwitterX } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { useAppDispatch } from "@/Redux/hooks";
-import { setInfos, setIsLogin } from "@/Redux/authSlice";
+import { setIsLogin } from "@/Redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
@@ -46,17 +46,6 @@ function Login() {
       data.password.toLocaleLowerCase().trim() === "admin1234"
     ) {
       dispatch(setIsLogin(true));
-      dispatch(
-        setInfos({
-          id: "1",
-          name: "Mohammad Akhlaghi",
-          position: "Frontend Developer",
-          password: "admin1234",
-          token: "login",
-          email: "mohammadakhlaghi332@gmail.com",
-          role: "admin",
-        })
-      );
       localStorage.setItem("status", "online");
       localStorage.setItem("isLogin", "true");
       successToast();
