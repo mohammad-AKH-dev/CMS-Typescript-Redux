@@ -393,14 +393,14 @@
       "title": "API integration for payment gateway",
       "description": "Develop and test seamless payment processing integration for the online store.",
       "field": "Development",
-      "status": "In Progress"
+      "status": "Active"
     },
     {
       "id": "5",
       "title": "Email newsletter template creation",
       "description": "Design a responsive and visually appealing template for monthly customer updates.",
       "field": "Design",
-      "status": "Active"
+      "status": "In Progress"
     },
     {
       "id": "6",
@@ -420,26 +420,19 @@
       "id": "8",
       "title": "Brand logo refresh",
       "description": "Update the company logo to reflect modern trends while retaining core identity.",
-      "field": "Design",
+      "field": "Development",
       "status": "In Progress"
     },
     {
       "id": "9",
       "title": "Content marketing plan Q2",
       "description": "Develop a quarterly blog and video content schedule to engage target audience.",
-      "field": "Marketing",
-      "status": "Active"
-    },
-    {
-      "id": "ef53febe-aadb-42c6-9e6e-37c422d1dc5a",
-      "title": "Fix users page ui",
-      "description": "fix the margin and padding of the table",
       "field": "Design",
       "status": "Active"
     },
     {
       "id": "aadcae90-a517-4441-93ef-5a39feec9059",
-      "title": "introdue company",
+      "title": "introdues company",
       "description": "we shall introduce our company to our news guests",
       "field": "Marketing",
       "status": "In Progress"
@@ -449,7 +442,7 @@
       "title": "github",
       "description": "register you github accounts",
       "field": "Development",
-      "status": "Completed"
+      "status": "Active"
     }
   ]
 }
