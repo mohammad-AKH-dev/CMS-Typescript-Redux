@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 export const fetchAdmin = createAsyncThunk('admins/get',async () => {
-   const req = await fetch('http://localhost:3000/admins')
+   const req = await fetch('https://dashboard-api-vq7r.onrender.com/api/admins/1')
    const data = await req.json()
    return data
 })
@@ -43,7 +43,6 @@ const authSlice:Slice = createSlice({
     extraReducers: (builder) => {
        builder.addCase(fetchAdmin.fulfilled,(state,action) => {
           state.infos = action.payload
-          console.log('infos',state.infos)
        })
     }
 })

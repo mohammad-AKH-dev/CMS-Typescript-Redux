@@ -10,7 +10,7 @@ function PrivatePage({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
    
   useEffect(() => {
-    if(auth.isLogin === 'false' && status === 'offline') {
+    if(auth.isLogin === 'false' && status === 'offline' && !auth.infos ) {
       navigate('/login')
     }else if (!localStorageLogin || !status) {
       navigate('/login')

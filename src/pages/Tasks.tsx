@@ -99,8 +99,6 @@ function Tasks() {
       },
     }).then(async (result) => {
        if(result.isConfirmed && result.value.title.length && result.value.description.length) {
-        const value = {...result.value,status: 'Active'}
-        console.log(value)
         await dispatch(addTask({
           ...result.value,
           status: 'Active'
@@ -171,8 +169,6 @@ function Tasks() {
       },
     }).then(async (result) => {
        if(result.isConfirmed && result.value.title.length && result.value.description.length) {
-        const value = {...result.value,status: 'Active'}
-        console.log(value)
         await dispatch(addTask({
           ...result.value,
           status: 'In Progress'
@@ -243,8 +239,6 @@ function Tasks() {
       },
     }).then(async (result) => {
        if(result.isConfirmed && result.value.title.length && result.value.description.length) {
-        const value = {...result.value,status: 'Active'}
-        console.log(value)
         await dispatch(addTask({
           ...result.value,
           status: 'Completed'

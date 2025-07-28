@@ -140,8 +140,6 @@ function TaskBox(props: TaskBoxPropsType) {
            },
          }).then(async (result) => {
             if(result.isConfirmed && result.value.title.length && result.value.description.length) {
-             const value = {...result.value}
-             console.log(value)
              await dispatch(editTask({
                ...result.value
               }))

@@ -2,11 +2,11 @@ import { FaGoogle } from "react-icons/fa";
 import { BsApple } from "react-icons/bs";
 import { BsTwitterX } from "react-icons/bs";
 import { useForm } from "react-hook-form";
-import { useAppDispatch } from "@/Redux/hooks";
-import { setIsLogin } from "@/Redux/authSlice";
+import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import { fetchAdmin, setIsLogin } from "@/Redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type inputs = {
   username: string;
@@ -23,7 +23,40 @@ function Login() {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const auth = useAppSelector((store) => store.auth);
+  const [hasNetWork, setHasNetWork] = useState(navigator.onLine);
   const [isDisable, setIsDisable] = useState<boolean>(false);
+
+  useEffect(() => {
+    const isOnlineHandler = () => {
+      setHasNetWork(true);
+      toast.success("Your connection is back.", {
+        autoClose: 3000,
+        position: "top-left",
+      });
+      dispatch(fetchAdmin())
+    };
+    window.addEventListener("online", isOnlineHandler);
+
+    return () => window.removeEventListener("online", isOnlineHandler);
+  }, []);
+
+  useEffect(() => {
+    const isOfflineHandler = () => {
+      setHasNetWork(false);
+      toast.error("You are offline. Please check your connection.", {
+        autoClose: 3000,
+        position: "top-left",
+      });
+    };
+    window.addEventListener("offline", isOfflineHandler);
+
+    return () => window.removeEventListener("offline", isOfflineHandler);
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchAdmin());
+  }, []);
 
   const successToast = () =>
     toast.success("You Logged In Successfully :)", {
@@ -35,23 +68,48 @@ function Login() {
   const errorToast = () =>
     toast.error("invalid username or password", {
       position: "top-left",
-      onClose: () => setIsDisable(false),
       autoClose: 3000,
     });
 
-
   const submitHandler = (data: inputs) => {
-    if (
-      data.username.toLocaleLowerCase().trim() === "mohammad akh" &&
-      data.password.toLocaleLowerCase().trim() === "admin1234"
-    ) {
-      dispatch(setIsLogin(true));
-      localStorage.setItem("status", "online");
-      localStorage.setItem("isLogin", "true");
-      successToast();
+    setIsDisable(true);
+    if (hasNetWork) {
+      try {
+        if (auth.infos) {
+          if (
+            data.username.toLocaleLowerCase().trim() === "admin" &&
+            data.password.toLocaleLowerCase().trim() === "admin"
+          ) {
+            dispatch(setIsLogin(true));
+            localStorage.setItem("status", "online");
+            localStorage.setItem("isLogin", "true");
+            localStorage.setItem("user", JSON.stringify(auth.infos));
+            successToast();
+          } else {
+            errorToast();
+          }
+        } else {
+          toast.error("something went wrong. please try again.", {
+            position: "top-left",
+            autoClose: 3000,
+          });
+        }
+      } catch (err: unknown) {
+        toast.error("something went wrong. please try again.", {
+          position: "top-left",
+          autoClose: 3000,
+        });
+      } finally {
+        setTimeout(() => {
+          setIsDisable(false);
+        }, 3000);
+      }
     } else {
-      setIsDisable(true);
-      errorToast();
+      toast.error("You are offline. Please check your connection.", {
+        onClose: () => setIsDisable(false),
+        position: 'top-left',
+        autoClose: 3000,
+      });
     }
   };
 

@@ -3,14 +3,14 @@ import { tasksSliceInitialState, taskType } from "./types/tasksSlice.type";
 
 
 export const fetchTasks = createAsyncThunk('tasks/get',async () => {
-    const req = await fetch('http://localhost:3000/tasks')
+    const req = await fetch('https://dashboard-api-vq7r.onrender.com/api/tasks')
     const tasks = await req.json()
 
     return tasks
 })
 
 export const removeTask = createAsyncThunk('tasks/delete', async (id:string) => {
-    const req = await fetch(`http://localhost:3000/tasks/${id}`,{
+    const req = await fetch(`https://dashboard-api-vq7r.onrender.com/api/tasks/${id}`,{
         method: 'DELETE'
     })
     const res = req.json()
@@ -18,7 +18,7 @@ export const removeTask = createAsyncThunk('tasks/delete', async (id:string) => 
 })
 
 export const editTask = createAsyncThunk('tasks/put',async (data: taskType) => {
-    const req = await fetch(`http://localhost:3000/tasks/${data.id}`,{
+    const req = await fetch(`https://dashboard-api-vq7r.onrender.com/api/tasks/${data.id}`,{
         method: 'PUT',
         headers: {
             "Content-type": 'application/json'
@@ -30,7 +30,7 @@ export const editTask = createAsyncThunk('tasks/put',async (data: taskType) => {
 })
 
 export const addTask = createAsyncThunk('tasks/post',async (data : taskType) => {
-    const req = await fetch(`http://localhost:3000/tasks/`,{
+    const req = await fetch(`https://dashboard-api-vq7r.onrender.com/api/tasks/`,{
         method: "POST",
         headers: {
             "Content-type": 'application/json'

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { messageSliceInitialStateType } from "./types/messageSlice.types";
 
 export const fetchMessages = createAsyncThunk('messages/get',async () => {
-     const req = await fetch('http://localhost:3000/messages')
+     const req = await fetch('https://dashboard-api-vq7r.onrender.com/api/messages')
      const messages = await req.json()
      return messages
 })

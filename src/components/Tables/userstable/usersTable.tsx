@@ -8,6 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 import { useAppDispatch } from "@/Redux/hooks";
 import { FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import { Row } from "@tanstack/react-table";
 
 const MySwal = withReactContent(Swal);
 
@@ -93,7 +94,7 @@ export default function UsersTable() {
     if (col.id === "actions") {
       return {
         ...col,
-        cell: ({ row }) => (
+        cell: ({ row }: { row: Row<UserColumnType>}) => (
           <div className="actions flex gap-x-3">
             <MdEdit
               className="cursor-pointer"
@@ -111,7 +112,7 @@ export default function UsersTable() {
   });
 
   if (users.loading) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center p-8 text-white">Loading...</div>;
   }
 
   return (

@@ -151,7 +151,7 @@ export const columns: ColumnDef<Product>[] = [
       return (
         <>
           <div className="flex items-center">
-            <img src={company.img} />
+            <img className="max-w-[36px] max-h-[36px]" src={company.img} />
             <span className="block text-subtitle text-[12px] pb-1">
               {company.name}
             </span>
@@ -180,7 +180,7 @@ export const columns: ColumnDef<Product>[] = [
       return (
         <>
           <div className="flex text-icon items-center text-[12px]  gap-2 font-text leading-none">
-            {status === "In Stock" && (
+            {status === "In stock" && (
               <Badge
                 className="bg-success  min-w-[116px] flex font-text items-center justify-center 
                       text-textSuccess rounded-sm text-[14px]"
