@@ -26,8 +26,8 @@ function TaskBox(props: TaskBoxPropsType) {
   const dispatch = useAppDispatch()
   const MySwal = withReactContent(Swal)
 
-  const [options,setOptions] = useState<string[]>(["Development","Marketing","Design"])
-  const [allStatus,setAllStatus] = useState<string[]>(["Active","In Progress","Completed"])
+  const [options] = useState<string[]>(["Development","Marketing","Design"])
+  const [allStatus] = useState<string[]>(["Active","In Progress","Completed"])
 
    const removeHandler = (id: string) => {
     MySwal.fire({
@@ -140,6 +140,7 @@ function TaskBox(props: TaskBoxPropsType) {
            },
          }).then(async (result) => {
             if(result.isConfirmed && result.value.title.length && result.value.description.length) {
+
              await dispatch(editTask({
                ...result.value
               }))
