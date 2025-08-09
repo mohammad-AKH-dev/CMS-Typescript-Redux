@@ -164,7 +164,7 @@ function MainSidebar(): JSX.Element {
         </ul>
 
         {/* admin profile */}
-        <div className="admin-profile flex items-center justify-between mt-24 ">
+        <div className={`admin-profile flex justify-between ${isOpen ? 'absolute bottom-5' : 'items-center'}`}>
           <div className="profile__content flex items-center gap-x-2">
             <img src="/images/profiles/admin-profile.png" alt="admin" 
             className={`${!isOpen ? 'absolute bottom-4' : 'static'}`} />
@@ -184,7 +184,7 @@ function MainSidebar(): JSX.Element {
               <DropdownMenuTrigger
                 className={`${isOpen ? "block" : "hidden"}`}
               >
-                <IoIosArrowForward className="text-icon cursor-pointer" />
+                <IoIosArrowForward className="text-icon cursor-pointer translate-x-6 translate-y-1" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-input text-title border-none">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
