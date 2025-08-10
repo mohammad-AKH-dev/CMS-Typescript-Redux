@@ -51,11 +51,11 @@ function Header() {
             className="flex justify-center items-center gap-x-2 bg-selected p-2 rounded-sm"
           >
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <span className="flex items-center gap-x-2 text-subtitle">
+              <DropdownMenuTrigger className="theme-btn border-none outline-none appearance-none">
+                <div className="flex w-full h-full items-center gap-x-2 text-subtitle">
                   Change Theme
                   <FaPaintBrush />
-                </span>
+                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-input text-title border-none">
                 {
